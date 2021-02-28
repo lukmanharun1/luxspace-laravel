@@ -14,11 +14,10 @@
       content="https://luxspace.com/images/content/preview-homepage.jpg"
     />
 
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="apple-touch-icon" href="{{ asset('images/content/favicon.png') }}" />
+    <link rel="apple-touch-icon" href="images/content/favicon.png" />
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="./css/app.minify.css" />
+    <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" href="images/favicon.ico" />
 
     <meta name="theme-color" content="#000" />
@@ -286,7 +285,7 @@
               <h5 class="text-lg font-semibold">Children Room</h5>
               <span>807 items</span>
             </div>
-            <a href="#details.html" class="stretched-link">
+            <a href="details.html" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -323,7 +322,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Cangkir Mautie</h5>
             <span>IDR 89.300</span>
-            <a href="#details.html" class="stretched-link">
+            <a href="details.html" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -343,7 +342,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Bankyu Minimax</h5>
             <span>IDR 69.999</span>
-            <a href="#details.html" class="stretched-link">
+            <a href="details.html" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -363,7 +362,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Buku Sidu Edition</h5>
             <span>IDR 12.000.000</span>
-            <a href="#details.html" class="stretched-link">
+            <a href="details.html" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -383,7 +382,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Watch Notes X</h5>
             <span>IDR 7.600.999</span>
-            <a href="#details.html" class="stretched-link">
+            <a href="details.html" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -403,7 +402,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Racking Plants</h5>
             <span>IDR 159.300</span>
-            <a href="#details.html" class="stretched-link">
+            <a href="details.html" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -423,7 +422,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Buku Sidu Edition</h5>
             <span>IDR 12.000.000</span>
-            <a href="#details.html" class="stretched-link">
+            <a href="details.html" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -590,5 +589,16 @@
       </p>
     </footer>
     <!-- END: Footer -->
+
+		{{-- utils class --}}
+		<script src="js/utils-class.js"></script>
+		{{-- menu toggler --}}
+		<script src="js/menu-toggler.js"></script>
+    {{-- anchor link smooth --}}
+    <script src="js/anchor-link-smooth.js"></script>
+		{{-- carousel vanilla --}}
+		<script src="js/carousel.js"></script>
+    {{-- accourdion khusus pengguna handphone --}}
+    <script src="js/accourdion.js"></script>
   </body>
 </html>
