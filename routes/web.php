@@ -27,3 +27,8 @@ Route::get('/details', function () {
 Route::get('/cart', function () {
     return view('cart');
 });
+
+// halaman sukses -> shipping details
+Route::get('/success', function () {
+    return view('success');
+});
