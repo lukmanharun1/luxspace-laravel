@@ -13,10 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// halaman utama
 Route::get('/', function () {
     return view('index');
 });
 
+// details
 Route::get('/details', function () {
     return view('details');
+});
+
+// add to cart
+Route::get('/cart', function () {
+    return view('cart');
 });
