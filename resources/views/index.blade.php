@@ -221,7 +221,7 @@
               <h5 class="text-lg font-semibold">Living Room</h5>
               <span>18.309 items</span>
             </div>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -243,7 +243,7 @@
               <h5 class="text-lg font-semibold">Decoration</h5>
               <span>77.392 items</span>
             </div>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -265,7 +265,7 @@
               <h5 class="text-lg font-semibold">Bed Room</h5>
               <span>22.094 items</span>
             </div>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -285,7 +285,7 @@
               <h5 class="text-lg font-semibold">Children Room</h5>
               <span>807 items</span>
             </div>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -322,7 +322,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Cangkir Mautie</h5>
             <span>IDR 89.300</span>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -342,7 +342,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Bankyu Minimax</h5>
             <span>IDR 69.999</span>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -362,7 +362,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Buku Sidu Edition</h5>
             <span>IDR 12.000.000</span>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -382,7 +382,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Watch Notes X</h5>
             <span>IDR 7.600.999</span>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -402,7 +402,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Racking Plants</h5>
             <span>IDR 159.300</span>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -422,7 +422,7 @@
             </div>
             <h5 class="text-lg font-semibold mt-4">Buku Sidu Edition</h5>
             <span>IDR 12.000.000</span>
-            <a href="details.html" class="stretched-link">
+            <a href="/details" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -594,6 +594,8 @@
 		<script src="js/utils-class.js"></script>
 		{{-- menu toggler --}}
 		<script src="js/menu-toggler.js"></script>
+    {{-- modal button play --}}
+    <script src="js/modal.js"></script>
     {{-- anchor link smooth --}}
     <script src="js/anchor-link-smooth.js"></script>
 		{{-- carousel vanilla --}}
