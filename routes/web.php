@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // halaman utama
 Route::get('/', function () {
-    return view('index');
+    // return view('index');
 });
 
 // details
