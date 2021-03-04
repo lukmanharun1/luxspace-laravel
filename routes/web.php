@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,8 @@ Route::get('/success', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard'); 
+    Route::get('/dashboard', [RoomController::class, 'index']);
+    Route::get('/dashboard/add', [RoomController::class, 'show']);
+
 });
 require __DIR__.'/auth.php';

@@ -459,7 +459,6 @@
   @include('layouts.aside-menu')
 
 @include('layouts.footer')
-@endsection
 @push('include-js')
   {{-- utils class --}}
   <script src="js/utils-class.js"></script>
@@ -473,4 +472,6 @@
   <script src="js/carousel.js"></script>
   {{-- accourdion khusus pengguna handphone --}}
   <script src="js/accourdion.js"></script>
+  
 @endpush
+@endsection
