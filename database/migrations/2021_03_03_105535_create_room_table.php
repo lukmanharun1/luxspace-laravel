@@ -15,7 +15,8 @@ class CreateRoomTable extends Migration
     {
         Schema::create('room', function (Blueprint $table) {
             $table->id();
-            $table->enum('category', ['living_room', 'children_room', 'decoration_room', 'bed_room']);
+            $table->string('name_product');
+            $table->enum('category', ['all_room', 'living_room', 'children_room', 'decoration_room', 'bed_room']);
             $table->bigInteger('price');
             $table->longText('about_product');
             $table->string('image1');
