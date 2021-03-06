@@ -25,12 +25,12 @@ class RoomRequest extends FormRequest
     {
         return [
             'name_product' => 'required',
-            'category' => 'required',
-            'price' => 'required',
-            'about_product' => 'required',
-            'image1' => 'required',
-            'image2' => 'required',
-            'image3' => 'required'
+            'category' => 'required|in:all_room,living_room,children_room,decoration_room,bed_room',
+            'price' => 'required|integer',
+            'about_product' => 'required|min:25',
+            'image1' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+            'image2' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+            'image3' => 'required|mimes:jpg,jpeg,png|file|max:2048'
 
         ];
     }

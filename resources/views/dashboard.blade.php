@@ -59,12 +59,40 @@
               <a href="/dashboard/details/{{ $room->id }}" 
                 class="bg-pink-400 px-3 rounded-sm text-2xl hover:bg-black hover:text-pink-400">&#8505;</a>
             </td>
+            {{-- name product --}}
             <td class="border border-solid border-black">{{ $room->name_product }}</td>
+            {{-- category --}}
             <td class="border border-solid border-black">{{ $room->category }}</td>
-            <td class="border border-solid border-black">{{ $room->price }}</td>
-            <td class="border border-solid border-black">{{ $room->image1 }}</td>
-            <td class="border border-solid border-black">{{ $room->image2 }}</td>
-            <td class="border border-solid border-black">{{ $room->image3 }}</td>
+            {{-- price --}}
+            <td class="border border-solid border-black">IDR {{ number_format($room->price,0, ',', '.') }}</td>
+            {{-- image 1 --}}
+            <td class="border border-solid border-black">
+              <img 
+                src="{{ asset('images/upload_image/' . $room->image1) }}" 
+                alt="upload image 1"
+                height="60"
+                width="60"
+              
+              />
+            </td>
+            {{-- image 2 --}}
+            <td class="border border-solid border-black">
+              <img 
+                src="{{ asset('images/upload_image/' . $room->image2) }}" 
+                alt="upload image 2"
+                height="60"
+                width="60"
+              />
+            </td>
+            {{-- image 3 --}}
+            <td class="border border-solid border-black">
+              <img 
+                src="{{ asset('images/upload_image/' . $room->image3) }}" 
+                alt="upload image 3"
+                height="60"
+                width="60"
+              />
+            </td>
           </tr>
         @empty
           
