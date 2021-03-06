@@ -11,7 +11,7 @@
         <div class="w-56 flex items-center">
           <a href="/dashboard">
             <img
-              src="images/design/logo.svg"
+              src="{{ asset('images/design/logo.svg') }}"
               alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece"
             />
           </a>

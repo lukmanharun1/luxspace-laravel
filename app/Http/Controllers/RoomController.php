@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RoomRequest;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -37,9 +38,8 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
-        //
     }
 
     /**
@@ -50,7 +50,7 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        //
+
     }
 
     /**

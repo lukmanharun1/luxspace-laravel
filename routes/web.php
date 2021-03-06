@@ -36,7 +36,8 @@ Route::get('/success', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RoomController::class, 'index']);
-    Route::get('/dashboard/add', [RoomController::class, 'show']);
+    Route::get('/dashboard/add', [RoomController::class, 'create']);
+    Route::post('/dashboard/add', [RoomController::class, 'store']);
 
 });
 require __DIR__.'/auth.php';
