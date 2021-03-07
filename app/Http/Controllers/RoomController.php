@@ -60,8 +60,9 @@ class RoomController extends Controller
             $image5 = $this->uploadImage($request, 'image5');
         }
         try {
+            $nameProduct = $request->name_product;
             $addDataRoom = [
-                'name_product' => $request->name_product,
+                'name_product' => $nameProduct,
                 'category' => $request->category,
                 'price' => $request->price,
                 'about_product' => $request->about_product,
@@ -72,15 +73,17 @@ class RoomController extends Controller
                 'image5' => $image5
 
             ];
+           
             Room::create($addDataRoom);
             return redirect('/dashboard')->with([
                 'status' => 'success',
-                'message' => "Data product $request->name_product added successfully"
+                'message' => "Data product <span class='font-semibold'>$nameProduct</span> added successfully"
             ]);
         } catch (QueryException $e) {
-            return redirect('/dashboard')->with([
-                'status' => 'success',
-                'message' => "Data product $request->name_product failed to add"
+            return 'test';
+            return redirect('/dashboard')->with('data', [
+                'status' => 'failed',
+                'message' => "Data product <span class='font-semibold'>$nameProduct</span> failed to add"
             ]);
         }
     }

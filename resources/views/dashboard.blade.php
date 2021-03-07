@@ -20,6 +20,23 @@
     </div>
   </header>
  <!-- END: Header -->
+ {{-- START: Notification --}}
+  @if (session('status') && session('message'))
+    <div class="notification" data-notification='
+    <svg xmlns="http://www.w3.org/2000/svg" height="55" viewBox="0 0 24 24" width="55" class="text-pink-400">
+      <path d="M0 0h24v24H0z" fill="none" />
+      @if(session('status') === 'success')
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" class="fill-current" />
+      @elseif(session('status') === 'failed')
+      <path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM17 15.74L15.74 17 12 13.26 8.26 17 7 15.74 10.74 12 7 8.26 8.26 7 12 10.74 15.74 7 17 8.26 13.26 12 17 15.74z" class="fill-current" />
+      @endif
+    </svg>
+    <h2 class="text-3xl font-semibold">{{ session('status') }}</h2>
+    <p>{{ session('message') }}</p>'></div>
+  @endif
+  
+ {{-- END: Notification --}}
+ 
   {{-- START: add product --}}
   <section class="px-6 py-10">
     <a href="/dashboard/add" 
@@ -103,4 +120,10 @@
   </section>
   {{-- END: TABLE --}}
   
+  @push('include-js')
+    {{-- utils class --}}
+    <script src="{{ asset('js/utils-class.js') }}"></script>
+    {{-- notification pop up --}}
+    <script src="{{ asset('js/notification.js') }}"></script>
+  @endpush
 @endsection
