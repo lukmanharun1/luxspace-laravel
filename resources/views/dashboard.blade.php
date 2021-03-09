@@ -20,20 +20,25 @@
     </div>
   </header>
  <!-- END: Header -->
- {{-- START: Notification --}}
-  @if (session('status') && session('message'))
-    <div class="notification" data-notification='
-    <svg xmlns="http://www.w3.org/2000/svg" height="55" viewBox="0 0 24 24" width="55" class="text-pink-400">
-      <path d="M0 0h24v24H0z" fill="none" />
-      @if(session('status') === 'success')
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" class="fill-current" />
-      @elseif(session('status') === 'failed')
-      <path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM17 15.74L15.74 17 12 13.26 8.26 17 7 15.74 10.74 12 7 8.26 8.26 7 12 10.74 15.74 7 17 8.26 13.26 12 17 15.74z" class="fill-current" />
-      @endif
-    </svg>
-    <h2 class="text-3xl font-semibold">{{ session('status') }}</h2>
-    <p>{{ session('message') }}</p>'></div>
-  @endif
+ 
+     @if (session('status') && session('message'))
+      <div class="absolute top-8 left-0 right-0 text-center notification" data-message="{{ session('message') }}">
+        <h3 class="@if (session('message' === 'failed')) bg-red-500 @endif bg-pink-400 inline py-4 px-12 rounded"></h3>
+      </div>
+      @push('include-js')
+        <script src="{{ asset('js/notification.js') }}"></script>
+      @endpush
+    @endif
+    {{-- notification delete --}}
+    <div class="delete" data-notification='
+        <svg xmlns="http://www.w3.org/2000/svg" height="55" viewBox="0 0 24 24" width="55" class="text-pink-400">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" class="fill-current" />
+        </svg>
+        <h2 class="text-3xl font-semibold">Are you sure?</h2>
+        <p>want to delete ${buttonDelete}?</p>'
+        >  
+        </div>
   
  {{-- END: Notification --}}
  
@@ -70,8 +75,14 @@
               <a href="/dashboard/edit/{{ $room->id }}" 
                 class="bg-pink-400 px-3 rounded-sm text-2xl hover:bg-black hover:text-pink-400">&#9998;</a>
               {{-- hapus --}}
-              <a href="/dashboard/delete/{{ $room->id }}" 
-                class="bg-pink-400 px-3 rounded-sm text-2xl">&#128465;</a>
+              <form action="/dashboard/delete/{{ $room->id }}" method="POST" class="inline">
+                @csrf
+                @method('delete')
+                <button type="submit" 
+                  class="bg-pink-400 px-3 rounded-sm text-2xl focus:outline-none" onclick="return confirm('are you sure you delete {{ $room->name_product }}?')">
+                  &#128465;
+                </button>
+              </form>
               {{-- details --}}
               <a href="/dashboard/details/{{ $room->id }}" 
                 class="bg-pink-400 px-3 rounded-sm text-2xl hover:bg-black hover:text-pink-400">&#8505;</a>
@@ -85,7 +96,7 @@
             {{-- image 1 --}}
             <td class="border border-solid border-black">
               <img 
-                src="{{ asset('images/upload_image/' . $room->image1) }}" 
+                src="{{ asset('images/upload_images/' . $room->image1) }}" 
                 alt="upload image 1"
                 height="60"
                 width="60"
@@ -95,7 +106,7 @@
             {{-- image 2 --}}
             <td class="border border-solid border-black">
               <img 
-                src="{{ asset('images/upload_image/' . $room->image2) }}" 
+                src="{{ asset('images/upload_images/' . $room->image2) }}" 
                 alt="upload image 2"
                 height="60"
                 width="60"
@@ -104,7 +115,7 @@
             {{-- image 3 --}}
             <td class="border border-solid border-black">
               <img 
-                src="{{ asset('images/upload_image/' . $room->image3) }}" 
+                src="{{ asset('images/upload_images/' . $room->image3) }}" 
                 alt="upload image 3"
                 height="60"
                 width="60"
@@ -124,6 +135,8 @@
     {{-- utils class --}}
     <script src="{{ asset('js/utils-class.js') }}"></script>
     {{-- notification pop up --}}
-    <script src="{{ asset('js/notification.js') }}"></script>
+    {{-- <script src="{{ asset('js/notification.js') }}"></script> --}}
+    {{-- dashboard --}}
+    <script src="{{ asset('js/dashboard.js') }}"></script>
   @endpush
 @endsection

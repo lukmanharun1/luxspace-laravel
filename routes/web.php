@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RoomController::class, 'index']);
     Route::get('/dashboard/add', [RoomController::class, 'create']);
     Route::post('/dashboard/add', [RoomController::class, 'store']);
+    Route::delete('/dashboard/delete/{room}', [RoomController::class, 'destroy']);
 
 });
 require __DIR__.'/auth.php';

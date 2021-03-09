@@ -6,6 +6,8 @@ use App\Http\Requests\RoomRequest;
 use App\Models\Room;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class RoomController extends Controller
 {
@@ -35,9 +37,8 @@ class RoomController extends Controller
     public function uploadImage($request, $key)
     {
         $uploadImage = $request->file($key);
-        $pathUpload = 'images/upload_image';
         $imageName = $uploadImage->getClientOriginalName() . '-' . uniqid() . '.' . $uploadImage->extension();
-        $uploadImage->move(public_path($pathUpload), $imageName);
+        $uploadImage->move(public_path(env('PATH_UPLOAD', 'images/upload_images/')), $imageName);
         return $imageName;
     }
 
@@ -80,7 +81,6 @@ class RoomController extends Controller
                 'message' => "Data product <span class='font-semibold'>$nameProduct</span> added successfully"
             ]);
         } catch (QueryException $e) {
-            return 'test';
             return redirect('/dashboard')->with('data', [
                 'status' => 'failed',
                 'message' => "Data product <span class='font-semibold'>$nameProduct</span> failed to add"
@@ -117,6 +117,15 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
+    public function deleteFileImage($nameImages = [])
+    {
+        foreach ($nameImages as $nameImage) {
+            $pathFileImage = public_path(env('PATH_UPLOAD', 'images/upload_images/') . $nameImage);
+            if (file_exists($pathFileImage)) {
+                unlink($pathFileImage);
+            }
+        }
+    }
     public function update(Request $request, Room $room)
     {
         //
@@ -128,8 +137,35 @@ class RoomController extends Controller
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy(Room $room)
     {
-        //
+        $images = [
+            'image1' => $room->image1,
+            'image2' => $room->image2,
+            'image3' => $room->image3,
+        ];
+
+        // check upload image 4
+        if ($room->image4 !== null) {
+            $images['image4'] = $room->image4;
+        }
+        // check upload image 5
+        if ($room->image5 !== null) {
+            $images['image5'] = $room->image5;
+        }
+        try {
+            $this->deleteFileImage($images);
+            $room->delete();
+            return redirect('/dashboard')->with([
+                'status' => 'success',
+                'message' => "Data product <span class='font-semibold'>$room->name_product</span> delete successfully"
+            ]);
+        } catch (QueryException $e) {
+            return redirect('/dashboard')->with('data', [
+                'status' => 'failed',
+                'message' => "Data product <span class='font-semibold'>$room->name_product</span> failed to delete"
+            ]);
+        }
     }
 }
