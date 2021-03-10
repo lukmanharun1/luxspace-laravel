@@ -36,6 +36,8 @@ Route::get('/success', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RoomController::class, 'index']);
     Route::get('/dashboard/add', [RoomController::class, 'create']);
+    Route::get('/dashboard/edit/{room}', [RoomController::class, 'edit']);
+    Route::put('/dashboard/edit/{room}', [RoomController::class, 'update']);
     Route::post('/dashboard/add', [RoomController::class, 'store']);
     Route::delete('/dashboard/delete/{room}', [RoomController::class, 'destroy']);
 

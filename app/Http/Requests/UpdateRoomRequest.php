@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoomRequest extends FormRequest
+class UpdateRoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,12 +28,11 @@ class RoomRequest extends FormRequest
             'category' => 'required|in:all_room,living_room,children_room,decoration_room,bed_room',
             'price' => 'required|integer',
             'about_product' => 'required|min:25',
-            'image1' => 'required|mimes:jpg,jpeg,png|file|max:2048',
-            'image2' => 'required|mimes:jpg,jpeg,png|file|max:2048',
-            'image3' => 'required|mimes:jpg,jpeg,png|file|max:2048',
+            'image1' => 'mimes:jpg,jpeg,png|file|max:2048',
+            'image2' => 'mimes:jpg,jpeg,png|file|max:2048',
+            'image3' => 'mimes:jpg,jpeg,png|file|max:2048',
             'image4' => 'mimes:jpg,jpeg,png|file|max:2048',
             'image5' => 'mimes:jpg,jpeg,png|file|max:2048'
-
         ];
     }
 }

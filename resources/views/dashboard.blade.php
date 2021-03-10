@@ -134,8 +134,6 @@
   @push('include-js')
     {{-- utils class --}}
     <script src="{{ asset('js/utils-class.js') }}"></script>
-    {{-- notification pop up --}}
-    {{-- <script src="{{ asset('js/notification.js') }}"></script> --}}
     {{-- dashboard --}}
     <script src="{{ asset('js/dashboard.js') }}"></script>
   @endpush
