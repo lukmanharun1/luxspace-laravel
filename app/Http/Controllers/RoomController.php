@@ -6,7 +6,6 @@ use App\Http\Requests\RoomRequest;
 use App\Models\Room;
 use Illuminate\Database\QueryException;
 use App\Http\Requests\UpdateRoomRequest;
-
 class RoomController extends Controller
 {
     /**
@@ -18,11 +17,11 @@ class RoomController extends Controller
     {
         $coloms = ['id', 'name_product', 'category', 'price', 'image1', 'image2', 'image3'];
         $rooms = Room::all($coloms);
-        return view('dashboard', [
+        $data = [
             'rooms' => $rooms
-        ]);
+        ];
+        return view('dashboard', $data);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -94,7 +93,7 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-
+        return view('rooms.details', ['room' => $room]);
     }
 
     /**
