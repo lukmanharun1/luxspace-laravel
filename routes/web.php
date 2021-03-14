@@ -45,7 +45,9 @@ Route::middleware(['auth'])->group(function () {
 
     // ajax
     Route::get('/dashboard/ajax/all-data-rooms', [AjaxRoomController::class, 'index']);
-    Route::get('/dashboard/ajax/{room:category}', [AjaxRoomController::class, 'show']);
+    Route::get('/dashboard/ajax/all-data-rooms/{productPrice}', [AjaxRoomController::class, 'showAllRoom']);
+    Route::get('/dashboard/ajax/{category}', [AjaxRoomController::class, 'show']);
+    Route::get('/dashboard/ajax/{category}/{productPrice}', [AjaxRoomController::class, 'showProductPrice']);
 
 });
 require __DIR__.'/auth.php';

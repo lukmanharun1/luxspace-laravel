@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class AjaxRoomController extends Controller
 {
+    private $coloms =  ['id', 'name_product', 'category', 'price', 'image1', 'image2', 'image3'];
     /**
      * Display a listing of the resource.
      *
@@ -14,33 +15,11 @@ class AjaxRoomController extends Controller
      */
     public function index()
     {
-        $coloms = ['id', 'name_product', 'category', 'price', 'image1', 'image2', 'image3'];
-        $rooms = Room::all($coloms);
+        $rooms = Room::all($this->coloms);
         $data = [
             'rooms' => $rooms
         ];
         return view('rooms.ajax.allData', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -49,42 +28,27 @@ class AjaxRoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Room $room)
+    public function show($category)
     {
-        return $room;
+        $rooms = Room::where('category', '=', $category)->get($this->coloms);
+        return view('rooms.ajax.allData', ['rooms' => $rooms]);
+    }
+    public function showAllRoom($productPrice)
+    {
+        $rooms = Room::where('name_product', 'like', "%$productPrice%")
+                        ->orWhere('price', 'like', "%$productPrice%")
+                        ->get($this->coloms);
+        return view('rooms.ajax.allData', ['rooms' => $rooms]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function showProductPrice($category, $productPrice)
     {
-        //
+        $rooms = Room::where('category', '=', $category)
+                        ->where('name_product', 'like', "%$productPrice%")
+                        ->orWhere('price', 'like', "%$productPrice%")
+                        ->get($this->coloms);
+            
+        return view('rooms.ajax.allData', ['rooms' => $rooms]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }
