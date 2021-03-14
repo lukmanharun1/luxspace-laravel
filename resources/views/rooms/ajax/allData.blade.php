@@ -24,34 +24,23 @@
   <td class="border border-solid border-black">{{ $room->category }}</td>
   {{-- price --}}
   <td class="border border-solid border-black">IDR {{ number_format($room->price,0, ',', '.') }}</td>
-  {{-- image 1 --}}
+  {{-- images --}}
+  @php
+    $images = [
+      $room->image1,
+      $room->image2,
+      $room->image3
+    ];
+  @endphp
+  @foreach($images as $image)
   <td class="border border-solid border-black">
     <img 
-      src="{{ asset('images/upload_images/' . $room->image1) }}" 
-      alt="upload image 1"
-      height="60"
-      width="60"
-    
+      src="{{ asset('images/upload_images/' . $image) }}" 
+      alt="upload images"
+      class="w-14 h-14"
     />
   </td>
-  {{-- image 2 --}}
-  <td class="border border-solid border-black">
-    <img 
-      src="{{ asset('images/upload_images/' . $room->image2) }}" 
-      alt="upload image 2"
-      height="60"
-      width="60"
-    />
-  </td>
-  {{-- image 3 --}}
-  <td class="border border-solid border-black">
-    <img 
-      src="{{ asset('images/upload_images/' . $room->image3) }}" 
-      alt="upload image 3"
-      height="60"
-      width="60"
-    />
-  </td>
+  @endforeach
 </tr>
 @empty
 <tr>
