@@ -79,6 +79,20 @@
     .slider .thumbnail .item.selected::after {
         @apply bg-opacity-35 border-opacity-100;
     }
+    .icon-details {
+        width: 70px;
+        height: 70px;
+        top: 42%;
+        left: 39%;
+        @apply bg-white rounded-full relative;
+    }
+    .icon-details svg {
+        width: 43px;
+        height: 24px;
+        left: 18%;
+        top: 27%;
+        @apply absolute text-white;
+    }
 }
 
 @screen md {

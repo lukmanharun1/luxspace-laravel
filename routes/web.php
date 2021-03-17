@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxRoomController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 /*
@@ -15,9 +16,7 @@ use App\Http\Controllers\RoomController;
 */
 
 // halaman utama
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IndexController::class, 'index']);
 
 // details
 Route::get('/details', function () {

@@ -123,3 +123,26 @@ if (carouselId) {
     window.addEventListener("load", carouselCalculateOffset);
     window.addEventListener("resize", carouselCalculateOffset);
 }
+
+const cards = document.querySelectorAll(".card");
+const links = document.querySelectorAll(".relative.px-4.card .stretched-link");
+
+links.forEach(function (link) {
+    link.addEventListener("mouseover", function (e) {
+        const iconDetail = e.target.parentElement.querySelector(
+            ".absolute.inset-0.rounded-3xl"
+        );
+        if (iconDetail.classList.contains("hidden")) {
+            iconDetail.classList.remove("hidden");
+        }
+    });
+
+    link.addEventListener("mouseleave", function (e) {
+        const iconDetail = e.target.parentElement.querySelector(
+            ".absolute.inset-0.rounded-3xl"
+        );
+        if (!iconDetail.classList.contains("hidden")) {
+            iconDetail.classList.add("hidden");
+        }
+    });
+});
