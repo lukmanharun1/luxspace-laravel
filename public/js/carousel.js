@@ -49,7 +49,6 @@ function slide(wrapper, items) {
 
     function dragAction(e) {
         e = e || window.event;
-
         if (e.type == "touchmove") {
             posX2 = posX1 - e.touches[0].clientX;
             posX1 = e.touches[0].clientX;

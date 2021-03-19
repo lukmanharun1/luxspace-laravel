@@ -3,7 +3,7 @@
   <div class="border-t border-b border-gray-200 py-12 mt-16 px-4">
     <div class="flex justify-center mb-8">
       <img
-        src="images/design/logo.svg"
+        src="{{ asset('images/design/logo.svg') }}"
         alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece"
       />
     </div>

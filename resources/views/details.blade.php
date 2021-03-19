@@ -39,10 +39,10 @@
             <div class="px-2">
               <div
                 class="item selected"
-                data-img="./images/content/chair1.jpg"
+                data-img="{{ asset('./images/content/chair1.jpg') }}"
               >
                 <img
-                  src="./images/content/chair1.jpg"
+                  src="{{ asset('./images/content/chair1.jpg') }}"
                   alt="chair side"
                   class="object-cover w-full h-full rounded-lg"
                 />
@@ -52,9 +52,9 @@
 
             <!-- START: slideshow thumbnail item 2 -->
             <div class="px-2">
-              <div class="item" data-img="./images/content/chair2.jpg">
+              <div class="item" data-img="{{ asset('./images/content/chair2.jpg') }}">
                 <img
-                  src="./images/content/chair2.jpg"
+                  src="{{ asset('./images/content/chair2.jpg') }}"
                   alt="chair side"
                   class="object-cover w-full h-full rounded-lg"
                 />
@@ -64,9 +64,9 @@
 
             <!-- START: slideshow thumbnail item 3 -->
             <div class="px-2">
-              <div class="item" data-img="./images/content/chair1.jpg">
+              <div class="item" data-img="{{ asset('./images/content/chair1.jpg') }}">
                 <img
-                  src="./images/content/chair1.jpg"
+                  src="{{ asset('./images/content/chair1.jpg') }}"
                   alt="chair side"
                   class="object-cover w-full h-full rounded-lg"
                 />
@@ -76,9 +76,9 @@
 
             <!-- START: slideshow thumbnail item 4 -->
             <div class="px-2">
-              <div class="item" data-img="./images/content/chair1.jpg">
+              <div class="item" data-img="{{ asset('./images/content/chair1.jpg') }}">
                 <img
-                  src="./images/content/chair1.jpg"
+                  src="{{ asset('./images/content/chair1.jpg') }}"
                   alt="chair side"
                   class="object-cover w-full h-full rounded-lg"
                 />
@@ -88,9 +88,9 @@
 
             <!-- START: slideshow thumbnail item 5 -->
             <div class="px-2">
-              <div class="item" data-img="./images/content/chair1.jpg">
+              <div class="item" data-img="{{ asset('./images/content/chair1.jpg') }}">
                 <img
-                  src="./images/content/chair1.jpg"
+                  src="{{ asset('./images/content/chair1.jpg') }}"
                   alt="chair side"
                   class="object-cover w-full h-full rounded-lg"
                 />
@@ -101,7 +101,7 @@
           <div class="preview">
             <div class="item rounded-lg h-full overflow-hidden">
               <img
-                src="./images/content/chair1.jpg"
+                src="{{ asset('./images/content/chair1.jpg') }}"
                 alt="chair side"
                 class="object-cover w-full h-full"
               />
@@ -177,7 +177,7 @@
           <div class="rounded-xl p-4 relative bg-white">
             <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
               <img
-                src="./images/content/chair-office-1.png"
+                src="{{ asset('images/content/chair-office-1.png') }}"
                 alt="chair 1"
                 class="w-full object-cover object-center"
               />
@@ -196,7 +196,7 @@
           <div class="rounded-xl p-4 relative bg-white">
             <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
               <img
-                src="./images/content/chair-office-2.png"
+                src="{{ asset('images/content/chair-office-2.png') }}"
                 alt="chair 1"
                 class="w-full object-cover object-center"
               />
@@ -215,7 +215,7 @@
           <div class="rounded-xl p-4 relative bg-white">
             <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
               <img
-                src="./images/content/chair-office-3.png"
+                src="{{ asset('images/content/chair-office-3.png') }}"
                 alt="chair 1"
                 class="w-full object-cover object-center"
               />
@@ -234,7 +234,7 @@
           <div class="rounded-xl p-4 relative bg-white">
             <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
               <img
-                src="./images/content/chair-office-4.png"
+                src="{{ asset('images/content/chair-office-4.png') }}"
                 alt="chair 1"
                 class="w-full object-cover object-center"
               />
@@ -256,13 +256,13 @@
 @include('layouts.footer')
 @push('include-js')
   {{-- utils class --}}
-  <script src="js/utils-class.js"></script>
+  <script src="{{ asset('js/utils-class.js') }}"></script>
   {{-- menu toggler --}}
-  <script src="js/menu-toggler.js"></script>
+  <script src="{{ asset('js/menu-toggler.js') }}"></script>
   {{-- slider --}}
-  <script src="js/slider.js"></script>
+  <script src="{{ asset('js/slider.js') }}"></script>
   {{-- accourdion khusus pengguna handphone --}}
-  <script src="js/accourdion.js"></script>
+  <script src="{{ asset('js/accourdion.js') }}"></script>
 @endpush
 
 @endsection

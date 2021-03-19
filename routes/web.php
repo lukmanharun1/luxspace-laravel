@@ -18,6 +18,11 @@ use App\Http\Controllers\RoomController;
 // halaman utama
 Route::get('/', [IndexController::class, 'index']);
 
+// category rooms 
+Route::get('/category-room/{room}', [IndexController::class, 'show'])->name('category-rooms');
+
+// ajax pagination
+Route::get('/pagination/{room}', [IndexController::class, 'showPagination']);
 // details
 Route::get('/details', function () {
     return view('details');
@@ -32,6 +37,7 @@ Route::get('/cart', function () {
 Route::get('/success', function () {
     return view('success');
 });
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RoomController::class, 'index']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
@@ -44,5 +45,23 @@ class IndexController extends Controller
             'bed_room' => $categories['all_room'] + $categories['bed_room'],
             'just_arrived' => $justArrived
         ]);
+    }
+
+    private function pagination($category)
+    {
+        return Room::select(['id', 'name_product', 'price', 'image1'])
+                        ->whereIn('category', ['all_room', $category])
+                        ->paginate(8);
+    }
+    public function show($category)
+    {
+        $rooms = $this->pagination($category);
+        return view('categoryRooms', ['category' => $rooms]);
+    }
+
+    public function showPagination($category) 
+    {
+        $rooms = $this->pagination($category);
+        return view('ajax-pagination.pagination', ['category' => $rooms]);
     }
 }

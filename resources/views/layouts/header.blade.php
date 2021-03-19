@@ -4,7 +4,7 @@
     <div class="flex flex-strech items-center">
       <div class="w-56 flex items-center">
         <img
-          src="images/design/logo.svg"
+          src="{{ asset('images/design/logo.svg') }}"
           alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece"
         />
       </div>
