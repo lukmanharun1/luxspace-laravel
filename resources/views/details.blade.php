@@ -29,8 +29,8 @@
   <section class="container mx-auto">
     <div class="flex flex-wrap my-4 md:my-12">
       <div class="w-full md:hidden px-4">
-        <h2 class="text-5xl font-semibold">Chair Thatty</h2>
-        <span class="text-xl">IDR 12.000.000</span>
+        <h2 class="text-5xl font-semibold">{{ $details->name_product }}</h2>
+        <span class="text-xl">IDR {{ number_format($details->price,0, ',', '.') }}</span>
       </div>
       <div class="flex-1">
         <div class="slider">
@@ -39,11 +39,11 @@
             <div class="px-2">
               <div
                 class="item selected"
-                data-img="{{ asset('./images/content/chair1.jpg') }}"
+                data-img="{{ asset('images/upload_images/'. $details->image1) }}"
               >
                 <img
-                  src="{{ asset('./images/content/chair1.jpg') }}"
-                  alt="chair side"
+                  src="{{ asset('images/upload_images/'. $details->image1) }}"
+                  alt="{{ $details->name_product }}"
                   class="object-cover w-full h-full rounded-lg"
                 />
               </div>
@@ -52,10 +52,10 @@
 
             <!-- START: slideshow thumbnail item 2 -->
             <div class="px-2">
-              <div class="item" data-img="{{ asset('./images/content/chair2.jpg') }}">
+              <div class="item" data-img="{{ asset('images/upload_images/'. $details->image2) }}">
                 <img
-                  src="{{ asset('./images/content/chair2.jpg') }}"
-                  alt="chair side"
+                  src="{{ asset('images/upload_images/'. $details->image2) }}"
+                  alt="{{ $details->name_product }}"
                   class="object-cover w-full h-full rounded-lg"
                 />
               </div>
@@ -64,10 +64,10 @@
 
             <!-- START: slideshow thumbnail item 3 -->
             <div class="px-2">
-              <div class="item" data-img="{{ asset('./images/content/chair1.jpg') }}">
+              <div class="item" data-img="{{ asset('images/upload_images/'. $details->image3) }}">
                 <img
-                  src="{{ asset('./images/content/chair1.jpg') }}"
-                  alt="chair side"
+                  src="{{ asset('images/upload_images/'. $details->image3) }}"
+                  alt="{{ $details->name_product }}"
                   class="object-cover w-full h-full rounded-lg"
                 />
               </div>
@@ -75,34 +75,35 @@
             <!-- END: slideshow thumbnail item 3 -->
 
             <!-- START: slideshow thumbnail item 4 -->
-            <div class="px-2">
-              <div class="item" data-img="{{ asset('./images/content/chair1.jpg') }}">
-                <img
-                  src="{{ asset('./images/content/chair1.jpg') }}"
-                  alt="chair side"
-                  class="object-cover w-full h-full rounded-lg"
-                />
+            @if($details->image4)
+              <div class="px-2">
+                <div class="item" data-img="{{ asset('images/upload_images/'. $details->image4) }}">
+                  <img
+                    src="{{ asset('images/upload_images/'. $details->image4) }}"
+                    class="object-cover w-full h-full rounded-lg"
+                  />
+                </div>
               </div>
-            </div>
-            <!-- END: slideshow thumbnail item 4 -->
+              <!-- END: slideshow thumbnail item 4 -->
+            @endif
 
             <!-- START: slideshow thumbnail item 5 -->
-            <div class="px-2">
-              <div class="item" data-img="{{ asset('./images/content/chair1.jpg') }}">
-                <img
-                  src="{{ asset('./images/content/chair1.jpg') }}"
-                  alt="chair side"
-                  class="object-cover w-full h-full rounded-lg"
-                />
+            @if ($details->image5)
+              <div class="px-2">
+                <div class="item" data-img="{{ asset('images/upload_images/'. $details->image5) }}">
+                  <img
+                    src="{{ asset('images/upload_images/'. $details->image5) }}"
+                    class="object-cover w-full h-full rounded-lg"
+                  />
+                </div>
               </div>
-            </div>
-            <!-- END: slideshow thumbnail item 5 -->
+              <!-- END: slideshow thumbnail item 5 -->
+            @endif
           </div>
           <div class="preview">
             <div class="item rounded-lg h-full overflow-hidden">
               <img
-                src="{{ asset('./images/content/chair1.jpg') }}"
-                alt="chair side"
+                src="{{ asset('images/upload_images/'. $details->image1) }}"
                 class="object-cover w-full h-full"
               />
             </div>
@@ -111,8 +112,8 @@
       </div>
       <div class="flex-1 px-4 md:p-6">
         <div class="hidden md:block">
-          <h2 class="text-5xl font-semibold">Chair Thatty</h2>
-          <p class="text-xl">IDR 12.000.000</p>
+          <h2 class="text-5xl font-semibold">{{ $details->name_product }}</h2>
+          <p class="text-xl">IDR {{ number_format($details->price,0, ',', '.') }}</p>
         </div>
         <a
           href="/cart"
@@ -147,16 +148,10 @@
         <hr class="my-8" />
         <h6 class="text-xl font-semibold">About the product:</h6>
         <p class="text-xl leading-7 mb-6">
-          Tailored to a level of perfection synonymous with that of a Savile
-          Row suit and with understated quality in the detail, Jetty has been
-          influenced by timeless 1950s style.
+          {{ $details->about_product }}
         </p>
 
-        <p class="text-xl leading-7 mb-6">
-          Providing a subtle nod to the past, Jetty also provides a perfect
-          solution for the way we work today. A comprehensive product family,
-          Jetty features a variety of elegant chairs and sofas.
-        </p>
+        
       </div>
     </div>
   </section>

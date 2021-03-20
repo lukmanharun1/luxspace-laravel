@@ -24,9 +24,7 @@ Route::get('/category-room/{room}', [IndexController::class, 'show'])->name('cat
 // ajax pagination
 Route::get('/pagination/{room}', [IndexController::class, 'showPagination']);
 // details
-Route::get('/details', function () {
-    return view('details');
-});
+Route::get('/details/{room}', [IndexController::class, 'details']);
 
 // add to cart
 Route::get('/cart', function () {

@@ -64,4 +64,11 @@ class IndexController extends Controller
         $rooms = $this->pagination($category);
         return view('ajax-pagination.pagination', ['category' => $rooms]);
     }
+
+    public function details(Room $room)
+    {
+        return view('details', [
+            'details' => $room
+        ]);
+    }
 }
