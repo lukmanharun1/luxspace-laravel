@@ -29,7 +29,7 @@
   <section class="container mx-auto">
     <div class="flex flex-wrap my-4 md:my-12">
       <div class="w-full md:hidden px-4">
-        <h2 class="text-5xl font-semibold">{{ $details->name_product }}</h2>
+        <h2 class="text-5xl font-semibold  mb-3">{{ $details->name_product }}</h2>
         <span class="text-xl">IDR {{ number_format($details->price,0, ',', '.') }}</span>
       </div>
       <div class="flex-1">
@@ -113,10 +113,10 @@
       <div class="flex-1 px-4 md:p-6">
         <div class="hidden md:block">
           <h2 class="text-5xl font-semibold">{{ $details->name_product }}</h2>
-          <p class="text-xl">IDR {{ number_format($details->price,0, ',', '.') }}</p>
+          <p class="text-xl mt-3">IDR {{ number_format($details->price,0, ',', '.') }}</p>
         </div>
         <a
-          href="/cart"
+          href="/add-to-cart/{{ $details->id }}"
           class="transition-all duration-200 bg-pink-400 text-black focus:bg-black focus:text-pink-400 rounded-full px-8 py-3 mt-4 inline-flex md:w-auto w-full justify-center"
           ><svg
             class="fill-current mr-3"
@@ -167,81 +167,31 @@
         </h3>
       </div>
       <div class="flex flex-wrap overflow-x-auto mb-4 -mx-3">
-        <!-- START: item 1 -->
-        <div class="px-3 flex-none w-full md:w-3/12 mb-4">
-          <div class="rounded-xl p-4 relative bg-white">
-            <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
-              <img
-                src="{{ asset('images/content/chair-office-1.png') }}"
-                alt="chair 1"
-                class="w-full object-cover object-center"
-              />
-            </div>
-            <h5 class="text-lg font-semibold mt-4">Office Chair 2xl</h5>
-            <span>IDR 89.300.000</span>
-            <a href="/details" class="streched-link">
-              <!-- fake children -->
+        <!-- START: item  -->
+        @foreach($all_room as $room)
+          <div class="px-3 flex-none w-full md:w-3/12 mb-4">
+            <a href="{{ url('details/' . $room->id) }}">
+              <div class="rounded-xl p-4 relative bg-white">
+                <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
+                  <img
+                  src="{{ asset('images/upload_images/' . $room->image1) }}"
+                  alt="chair 1"
+                  class="w-full object-cover object-center"
+                  />
+                </div>
+                <h5 class="text-lg font-semibold mt-4">{{ $room->name_product }}</h5>
+                <span>IDR {{ number_format($room->price,0, ',', '.') }}</span>
+                <a href="/details" class="streched-link">
+                  <!-- fake children -->
+                </a>
+              </div>
             </a>
           </div>
-        </div>
-        <!-- END: item 1 -->
+        @endforeach
+        <!-- END: item  -->
 
-        <!-- START: item 2 -->
-        <div class="px-3 flex-none w-full md:w-3/12 mb-4">
-          <div class="rounded-xl p-4 relative bg-white">
-            <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
-              <img
-                src="{{ asset('images/content/chair-office-2.png') }}"
-                alt="chair 1"
-                class="w-full object-cover object-center"
-              />
-            </div>
-            <h5 class="text-lg font-semibold mt-4">Saman Kakka</h5>
-            <span>IDR 14.500.000</span>
-            <a href="/details" class="streched-link">
-              <!-- fake children -->
-            </a>
-          </div>
-        </div>
-        <!-- END: item 2 -->
+       
 
-        <!-- START: item 3 -->
-        <div class="px-3 flex-none w-full md:w-3/12 mb-4">
-          <div class="rounded-xl p-4 relative bg-white">
-            <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
-              <img
-                src="{{ asset('images/content/chair-office-3.png') }}"
-                alt="chair 1"
-                class="w-full object-cover object-center"
-              />
-            </div>
-            <h5 class="text-lg font-semibold mt-4">Lino Dino</h5>
-            <span>IDR 22.000.000</span>
-            <a href="/details" class="streched-link">
-              <!-- fake children -->
-            </a>
-          </div>
-        </div>
-        <!-- END: item 3 -->
-
-        <!-- START: item 4 -->
-        <div class="px-3 flex-none w-full md:w-3/12 mb-4">
-          <div class="rounded-xl p-4 relative bg-white">
-            <div class="rounded-xl overflow-hidden card-shadow w-full h-48">
-              <img
-                src="{{ asset('images/content/chair-office-4.png') }}"
-                alt="chair 1"
-                class="w-full object-cover object-center"
-              />
-            </div>
-            <h5 class="text-lg font-semibold mt-4">Syail Ammeno</h5>
-            <span>IDR 12.000.000</span>
-            <a href="/details" class="streched-link">
-              <!-- fake children -->
-            </a>
-          </div>
-        </div>
-        <!-- END: item 4 -->
       </div>
     </div>
   </section>

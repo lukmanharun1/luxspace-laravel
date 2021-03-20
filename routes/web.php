@@ -27,9 +27,8 @@ Route::get('/pagination/{room}', [IndexController::class, 'showPagination']);
 Route::get('/details/{room}', [IndexController::class, 'details']);
 
 // add to cart
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::get('/add-to-cart/{id}', [IndexController::class, 'addToCart']);
+Route::get('/cart', [IndexController::class, 'cart']);
 
 // halaman sukses -> shipping details
 Route::get('/success', function () {

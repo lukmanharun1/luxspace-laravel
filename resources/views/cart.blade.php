@@ -58,22 +58,18 @@
           </div>
           <!-- END: Table Title -->
 
-          <!-- START: Cart empty wrapper -->
-          <p id="cart-empty" class="hidden text-center py-8">
-            Ooops... Cart is empty
-            <a href="/details" class="underline">Shop Now!</a>
-          </p>
-          <!-- END: Cart empty wrapper -->
-
-          <!-- START: Table item 1 -->
+          
+          
+          <!-- START: Table item  -->
+          @forelse($shopping_cart as $cart)
           <div
-            class="flex flex-start flex-wrap items-center mb-4 -mx-4"
+          class="flex flex-start flex-wrap items-center mb-4 -mx-4"
             data-row="1"
-          >
+            >
             <div class="px-4 flex-none">
               <div style="width: 90px; height: 90px">
                 <img
-                  src="./images/content/chair-office-1.png"
+                  src="./images/upload_images/{{ $cart->image1 }}"
                   alt="chair office 1"
                   class="object-cover rounded-xl w-full h-full"
                 />
@@ -82,19 +78,19 @@
             <div class="px-4 w-auto md:w-5/12 flex-1">
               <div>
                 <h6 class="font-semibold text-lg md:text-xl leading-8">
-                  Saman Kakka
+                 {{ $cart->name_product }}
                 </h6>
-                <span class="text-sm md:text-lg">Office Room</span>
+                <span class="text-sm md:text-lg">{{ $cart->category }}</span>
                 <h6
                   class="font-semibold text-base md:text-lg block md:hidden"
                 >
-                  IDR 28.000.000
+                  IDR {{ number_format($cart->price,0, ',', '.') }}
                 </h6>
               </div>
             </div>
             <div class="px-4 w-auto md:w-5/12 md:flex-1 hidden md:block">
               <div>
-                <h6 class="font-semibold text-lg">IDR 28.000.000</h6>
+                <h6 class="font-semibold text-lg">IDR {{ number_format($cart->price,0, ',', '.') }}</h6>
               </div>
             </div>
 
@@ -109,100 +105,16 @@
               </div>
             </div>
           </div>
-          <!-- END: Table item 1 -->
-
-          <!-- START: Table item 2 -->
-          <div
-            class="flex flex-start flex-wrap items-center mb-4 -mx-4"
-            data-row="2"
-          >
-            <div class="px-4 flex-none">
-              <div style="width: 90px; height: 90px">
-                <img
-                  src="./images/content/chair-office-2.png"
-                  alt="chair office 2"
-                  class="object-cover rounded-xl w-full h-full"
-                />
-              </div>
-            </div>
-            <div class="px-4 w-auto md:w-5/12 flex-1">
-              <div>
-                <h6 class="font-semibold text-lg md:text-xl leading-8">
-                  Green Seat
-                </h6>
-                <span class="text-sm md:text-lg">Office Room</span>
-                <h6
-                  class="font-semibold text-base md:text-lg block md:hidden"
-                >
-                  IDR 12.500.000
-                </h6>
-              </div>
-            </div>
-            <div class="px-4 w-auto md:w-5/12 md:flex-1 hidden md:block">
-              <div>
-                <h6 class="font-semibold text-lg">IDR 12.500.000</h6>
-              </div>
-            </div>
-
-            <div class="px-4 w-2/12">
-              <div class="text-center">
-                <button
-                  data-delete-item="2"
-                  class="text-red-600 border-none focus:outline-none px-3 py-1"
-                >
-                  X
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- END: Table item 2 -->
-
-          <!-- START: Table item 3 -->
-          <div
-            class="flex flex-start flex-wrap items-center mb-4 -mx-4"
-            data-row="3"
-          >
-            <div class="px-4 flex-none">
-              <div style="width: 90px; height: 90px">
-                <img
-                  src="./images/content/chair-office-3.png"
-                  alt="chair office 3"
-                  class="object-cover rounded-xl w-full h-full"
-                />
-              </div>
-            </div>
-            <div class="px-4 w-auto md:w-5/12 flex-1">
-              <div>
-                <h6 class="font-semibold text-lg md:text-xl leading-8">
-                  Pacific
-                </h6>
-                <span class="text-sm md:text-lg">Office Room</span>
-                <h6
-                  class="font-semibold text-base md:text-lg block md:hidden"
-                >
-                  IDR 88.800.000
-                </h6>
-              </div>
-            </div>
-            <div class="px-4 w-auto md:w-5/12 md:flex-1 hidden md:block">
-              <div>
-                <h6 class="font-semibold text-lg">IDR 88.800.000</h6>
-              </div>
-            </div>
-
-            <div class="px-4 w-2/12">
-              <div class="text-center">
-                <button
-                  data-delete-item="3"
-                  class="text-red-600 border-none focus:outline-none px-3 py-1"
-                >
-                  X
-                </button>
-              </div>
-            </div>
-          </div>
-          ,
-          <!-- END: Table item 3 -->
+            
+          @empty
+            <!-- START: Cart empty wrapper -->
+            <p id="cart-empty" class="hidden text-center py-8">
+              Ooops... Cart is empty
+              <a href="/details" class="underline">Shop Now!</a>
+            </p>
+            <!-- END: Cart empty wrapper -->
+          @endforelse
+          <!-- END: Table item  -->
         </div>
         <!-- END: shipping cart -->
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
+
 class IndexController extends Controller
 {
     public function index()
@@ -67,8 +68,44 @@ class IndexController extends Controller
 
     public function details(Room $room)
     {
+        $allRoom = Room::where('category', '=', 'all_room')
+                        ->orderBy('name_product', 'asc')
+                        ->limit(4)
+                        ->get(['id', 'image1', 'name_product', 'price']);
         return view('details', [
-            'details' => $room
+            'details' => $room,
+            'all_room' => $allRoom
+        ]);
+    }
+
+    public function addToCart($id) {
+        $valueCart = Room::select('id')->findOrFail($id);
+        $tujuhHari = time() + 60 * 60 * 24 * 7;
+        
+        if (isset($_COOKIE['cart'])) {
+            // kalau ada kerajang belanja maka tambahkan
+            $cart = json_decode($_COOKIE['cart'], true);
+            array_push($cart, $valueCart->id);           
+            setcookie('cart', json_encode($cart), $tujuhHari, '/');
+            return redirect('/cart');
+        } else {
+            // kalau tidak ada kerajang belanja maka tambahkan
+            $value = json_encode([$valueCart->id]);
+            setcookie('cart', $value, $tujuhHari, '/');
+            return redirect('/cart');
+        }
+    }
+
+    public function cart()
+    {
+        $shoppingCart = [];
+        if (isset($_COOKIE['cart'])) {
+            $cookieCart = json_decode($_COOKIE['cart']);
+            $shoppingCart = Room::whereIn('id', $cookieCart)
+                                    ->get(['id', 'image1', 'name_product', 'category', 'price']);
+        }
+        return view('cart', [
+            'shopping_cart' => $shoppingCart
         ]);
     }
 }
