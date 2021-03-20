@@ -34,7 +34,7 @@
         {{-- END: icon details (mata) --}}
         <h5 class="text-lg font-semibold mt-4">{{ $room->name_product }}</h5>
         <span>IDR {{ number_format($room->price,0, ',', '.') }}</span>
-        <a href="/details/all-room/{{ $room->id }}" class="stretched-link">
+        <a href="/details/{{ $room->id }}" class="stretched-link">
           <!-- fake children -->
         </a>
       </div>

@@ -313,7 +313,7 @@
           
             <h5 class="text-lg font-semibold mt-4">{{ $arrived->name_product }}</h5>
             <span>IDR {{ number_format($arrived->price,0, ',', '.') }}</span>
-            <a href="/details/all-room/{{ $arrived->id }}" class="stretched-link">
+            <a href="/details/{{ $arrived->id }}" class="stretched-link">
               <!-- fake children -->
             </a>
           </div>
@@ -375,17 +375,17 @@
 @include('layouts.footer')
 @push('include-js')
   {{-- utils class --}}
-  <script src="js/utils-class.js"></script>
+  <script src="{{ asset('js/utils-class.js') }}"></script>
   {{-- menu toggler --}}
-  <script src="js/menu-toggler.js"></script>
+  <script src="{{ asset('js/menu-toggler.js') }}"></script>
   {{-- modal button play --}}
-  <script src="js/modal.js"></script>
+  <script src="{{ asset('js/modal.js') }}"></script>
   {{-- anchor link smooth --}}
-  <script src="js/anchor-link-smooth.js"></script>
+  <script src="{{ asset('js/anchor-link-smooth.js') }}"></script>
   {{-- carousel vanilla --}}
-  <script src="js/carousel.js"></script>
+  <script src="{{ asset('js/carousel.js') }}"></script>
   {{-- accourdion khusus pengguna handphone --}}
-  <script src="js/accourdion.js"></script>
+  <script src="{{ asset('js/accourdion.js') }}"></script>
   
 @endpush
 @endsection

@@ -1,4 +1,23 @@
 const pagination = document.getElementById("pagination");
+const tempatPagination = pagination.previousElementSibling;
+// icon details (mata) hover
+tempatPagination.addEventListener("mouseover", function (e) {
+    const iconDetail = e.target.parentElement.querySelector(
+        ".absolute.inset-0.rounded-3xl"
+    );
+    if (iconDetail.classList.contains("hidden")) {
+        iconDetail.classList.remove("hidden");
+    }
+
+    // ketika mouse keluar
+    tempatPagination.addEventListener("mouseleave", function (e) {
+        if (!iconDetail.classList.contains("hidden")) {
+            iconDetail.classList.add("hidden");
+        }
+    });
+});
+
+// pagination
 pagination.addEventListener("click", function (e) {
     e.preventDefault();
     const classAktif = "bg-black text-pink-400";
@@ -15,10 +34,9 @@ pagination.addEventListener("click", function (e) {
             fetch(url)
                 .then((response) => response.text())
                 .then((success) => {
-                    console.log(success);
-                    const tempatPagination = pagination.previousElementSibling;
                     tempatPagination.innerHTML = success;
-                });
+                })
+                .catch((error) => console.log(error));
         }
     }
 });
