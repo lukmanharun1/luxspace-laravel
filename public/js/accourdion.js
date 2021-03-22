@@ -5,7 +5,6 @@ function accourdion() {
         const e = accourdionContainer[index];
 
         const button = document.createElement("button");
-        console.log(accourdionContainer[index]);
         addClass(
             button,
             "absolute block md:hidden right-0 transform -translate-y-1/2 focus:outline-none transition duration-200 rotate-0"

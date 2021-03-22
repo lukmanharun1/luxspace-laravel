@@ -74,7 +74,7 @@
             <li class="ml-6">
               <a
                 id="header-cart"
-                href="cart.html"
+                href="{{ url('/cart') }}"
                 class="flex items-center justify-center w-8 h-8 text-black hover:text-white cart cart-filled"
               >
                 <svg
@@ -376,6 +376,8 @@
 @push('include-js')
   {{-- utils class --}}
   <script src="{{ asset('js/utils-class.js') }}"></script>
+  {{-- icon keranjang --}}
+  <script src="{{ asset('js/iconKeranjang.js') }}"></script>
   {{-- menu toggler --}}
   <script src="{{ asset('js/menu-toggler.js') }}"></script>
   {{-- modal button play --}}

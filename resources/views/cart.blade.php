@@ -61,15 +61,65 @@
           
           
           <!-- START: Table item  -->
-          @forelse($shopping_cart as $cart)
+          @foreach($shopping_cart as $cart)
+            <div
+            class="flex flex-start flex-wrap items-center mb-4 -mx-4"
+              data-row="{{ $cart->id }}"
+              >
+              <div class="px-4 flex-none">
+                <div style="width: 90px; height: 90px">
+                  <img
+                    src="./images/upload_images/{{ $cart->image1 }}"
+                    alt="chair office 1"
+                    class="object-cover rounded-xl w-full h-full"
+                  />
+                </div>
+              </div>
+              <div class="px-4 w-auto md:w-5/12 flex-1">
+                <div>
+                  <h6 class="font-semibold text-lg md:text-xl leading-8">
+                  {{ $cart->name_product }}
+                  </h6>
+                  @php
+                      $category = explode('_', $cart->category);
+                  @endphp
+                  <span class="text-sm md:text-lg">{{ ucfirst($category[0]) . ' ' . ucfirst($category[1]) }}</span>
+                  <h6
+                    class="font-semibold text-base md:text-lg block md:hidden"
+                    data-price="{{ $cart->price }}">
+                    IDR {{ number_format($cart->price,0, ',', '.') }}
+                  </h6>
+                </div>
+              </div>
+              <div class="px-4 w-auto md:w-5/12 md:flex-1 hidden md:block">
+                <div>
+                  <h6 class="font-semibold text-lg" 
+                    data-price="{{ $cart->price }}">IDR {{ number_format($cart->price,0, ',', '.') }}</h6>
+                </div>
+              </div>
+
+              <div class="px-4 w-2/12">
+                <div class="text-center">
+                  <button
+                    data-delete-item="{{ $cart->id }}"
+                    class="text-red-600 border-none focus:outline-none px-3 py-1"
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
+            </div>
+          @endforeach
+
+          @foreach($shopping_duplikat as $duplikat)
           <div
           class="flex flex-start flex-wrap items-center mb-4 -mx-4"
-            data-row="1"
+            data-row="{{ $duplikat['id'] }}"
             >
             <div class="px-4 flex-none">
               <div style="width: 90px; height: 90px">
                 <img
-                  src="./images/upload_images/{{ $cart->image1 }}"
+                  src="./images/upload_images/{{ $duplikat['image1'] }}"
                   alt="chair office 1"
                   class="object-cover rounded-xl w-full h-full"
                 />
@@ -78,26 +128,30 @@
             <div class="px-4 w-auto md:w-5/12 flex-1">
               <div>
                 <h6 class="font-semibold text-lg md:text-xl leading-8">
-                 {{ $cart->name_product }}
+                {{ $duplikat['name_product'] }}
                 </h6>
-                <span class="text-sm md:text-lg">{{ $cart->category }}</span>
+                @php
+                  $category = explode('_', $duplikat['category']);
+                @endphp
+                <span class="text-sm md:text-lg">{{ ucfirst($category[0]) . ' ' . ucfirst($category[1]) }}</span>
                 <h6
                   class="font-semibold text-base md:text-lg block md:hidden"
-                >
-                  IDR {{ number_format($cart->price,0, ',', '.') }}
+                  data-price="{{ $duplikat['price'] }}">
+                  IDR {{ number_format($duplikat['price'],0, ',', '.') }}
                 </h6>
               </div>
             </div>
             <div class="px-4 w-auto md:w-5/12 md:flex-1 hidden md:block">
               <div>
-                <h6 class="font-semibold text-lg">IDR {{ number_format($cart->price,0, ',', '.') }}</h6>
+                <h6 class="font-semibold text-lg" 
+                  data-price="{{$duplikat['price'] }}">IDR {{ number_format($duplikat['price'],0, ',', '.') }}</h6>
               </div>
             </div>
 
             <div class="px-4 w-2/12">
               <div class="text-center">
                 <button
-                  data-delete-item="1"
+                  data-delete-item="{{$duplikat['id'] }}"
                   class="text-red-600 border-none focus:outline-none px-3 py-1"
                 >
                   X
@@ -105,18 +159,42 @@
               </div>
             </div>
           </div>
-            
-          @empty
-            <!-- START: Cart empty wrapper -->
-            <p id="cart-empty" class="hidden text-center py-8">
-              Ooops... Cart is empty
-              <a href="/details" class="underline">Shop Now!</a>
-            </p>
-            <!-- END: Cart empty wrapper -->
-          @endforelse
+          @endforeach
+          <!-- START: Cart empty wrapper -->
+          <p id="cart-empty" class="hidden text-center py-8">
+            Ooops... Cart is empty
+            <a href="/#browse-the-room" class="underline">Shop Now!</a>
+          </p>
+          <!-- END: Cart empty wrapper -->
+
           <!-- END: Table item  -->
+          
+          {{-- START: total --}}
+          @if (count($shopping_cart) != 0)
+            <div class="px-4 w-auto md:w-full mx-auto total">
+              <div>
+                <h6
+                  class="text-base md:text-lg block md:hidden ml-12"
+                >
+                Total: <b>IDR {{ number_format($total + $total / 10,0, ',', '.') }}</b>
+                sudah termasuk ppn 10%
+                </h6>
+              </div>
+            </div>
+            <div class="px-4 w-auto md:w-full md:flex-1 hidden md:block md:text-center ml-36 total">
+              <div>
+                <h6 class="text-lg">
+                  Total: <b>IDR {{ number_format($total + $total / 10,0, ',', '.') }}</b>
+                  sudah termasuk ppn 10%
+                </h6>
+              </div>
+            </div>
+          @endif
+
+          {{-- END: total --}}
         </div>
         <!-- END: shipping cart -->
+
 
         <!-- START: shipping details -->
         <div class="w-full md:px-4 md:w-4/12" id="shipping-detail">
@@ -323,13 +401,13 @@
 
   @push('include-js')
     {{-- utils class --}}
-    <script src="js/utils-class.js"></script>
+    <script src="{{ asset('js/utils-class.js') }}"></script>
     {{-- menu toggler --}}
-    <script src="js/menu-toggler.js"></script>
+    <script src="{{ asset('js/menu-toggler.js') }}"></script>
     {{-- shipping & shopping --}}
-    <script src="js/shippingDetail.js"></script>
-    <script src="js/shoppingCart.js"></script>
+    <script src="{{ asset('js/shippingDetail.js') }}"></script>
+    <script src="{{ asset('js/shoppingCart.js') }}"></script>
     {{-- accourdion khusus pengguna handphone --}}
-    <script src="js/accourdion.js"></script>
+    <script src="{{ asset('js/accourdion.js') }}"></script>
   @endpush
 @endsection
