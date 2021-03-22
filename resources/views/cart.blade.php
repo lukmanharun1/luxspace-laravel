@@ -64,12 +64,12 @@
           @foreach($shopping_cart as $cart)
             <div
             class="flex flex-start flex-wrap items-center mb-4 -mx-4"
-              data-row="{{ $cart->id }}"
+              data-row="{{ $cart['id'] }}"
               >
               <div class="px-4 flex-none">
                 <div style="width: 90px; height: 90px">
                   <img
-                    src="./images/upload_images/{{ $cart->image1 }}"
+                    src="./images/upload_images/{{ $cart['image1'] }}"
                     alt="chair office 1"
                     class="object-cover rounded-xl w-full h-full"
                   />
@@ -78,30 +78,30 @@
               <div class="px-4 w-auto md:w-5/12 flex-1">
                 <div>
                   <h6 class="font-semibold text-lg md:text-xl leading-8">
-                  {{ $cart->name_product }}
+                  {{ $cart['name_product'] }}
                   </h6>
                   @php
-                      $category = explode('_', $cart->category);
+                      $category = explode('_', $cart['category']);
                   @endphp
                   <span class="text-sm md:text-lg">{{ ucfirst($category[0]) . ' ' . ucfirst($category[1]) }}</span>
                   <h6
                     class="font-semibold text-base md:text-lg block md:hidden"
-                    data-price="{{ $cart->price }}">
-                    IDR {{ number_format($cart->price,0, ',', '.') }}
+                    data-price="{{ $cart['price'] }}">
+                    IDR {{ number_format($cart['price'],0, ',', '.') }}
                   </h6>
                 </div>
               </div>
               <div class="px-4 w-auto md:w-5/12 md:flex-1 hidden md:block">
                 <div>
                   <h6 class="font-semibold text-lg" 
-                    data-price="{{ $cart->price }}">IDR {{ number_format($cart->price,0, ',', '.') }}</h6>
+                    data-price="{{ $cart['price'] }}">IDR {{ number_format($cart['price'],0, ',', '.') }}</h6>
                 </div>
               </div>
 
               <div class="px-4 w-2/12">
                 <div class="text-center">
                   <button
-                    data-delete-item="{{ $cart->id }}"
+                    data-delete-item="{{ $cart['id'] }}"
                     class="text-red-600 border-none focus:outline-none px-3 py-1"
                   >
                     X
@@ -111,55 +111,6 @@
             </div>
           @endforeach
 
-          @foreach($shopping_duplikat as $duplikat)
-          <div
-          class="flex flex-start flex-wrap items-center mb-4 -mx-4"
-            data-row="{{ $duplikat['id'] }}"
-            >
-            <div class="px-4 flex-none">
-              <div style="width: 90px; height: 90px">
-                <img
-                  src="./images/upload_images/{{ $duplikat['image1'] }}"
-                  alt="chair office 1"
-                  class="object-cover rounded-xl w-full h-full"
-                />
-              </div>
-            </div>
-            <div class="px-4 w-auto md:w-5/12 flex-1">
-              <div>
-                <h6 class="font-semibold text-lg md:text-xl leading-8">
-                {{ $duplikat['name_product'] }}
-                </h6>
-                @php
-                  $category = explode('_', $duplikat['category']);
-                @endphp
-                <span class="text-sm md:text-lg">{{ ucfirst($category[0]) . ' ' . ucfirst($category[1]) }}</span>
-                <h6
-                  class="font-semibold text-base md:text-lg block md:hidden"
-                  data-price="{{ $duplikat['price'] }}">
-                  IDR {{ number_format($duplikat['price'],0, ',', '.') }}
-                </h6>
-              </div>
-            </div>
-            <div class="px-4 w-auto md:w-5/12 md:flex-1 hidden md:block">
-              <div>
-                <h6 class="font-semibold text-lg" 
-                  data-price="{{$duplikat['price'] }}">IDR {{ number_format($duplikat['price'],0, ',', '.') }}</h6>
-              </div>
-            </div>
-
-            <div class="px-4 w-2/12">
-              <div class="text-center">
-                <button
-                  data-delete-item="{{$duplikat['id'] }}"
-                  class="text-red-600 border-none focus:outline-none px-3 py-1"
-                >
-                  X
-                </button>
-              </div>
-            </div>
-          </div>
-          @endforeach
           <!-- START: Cart empty wrapper -->
           <p id="cart-empty" class="hidden text-center py-8">
             Ooops... Cart is empty

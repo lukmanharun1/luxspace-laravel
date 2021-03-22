@@ -98,38 +98,41 @@ class IndexController extends Controller
 
     public function cart()
     {
+        // initialisasi
         $shoppingCart = [];
+        $total = 0;
+        $dataShopping = collect();
         if (isset($_COOKIE['cart'])) {
             $cookieCart = json_decode($_COOKIE['cart']);
             
             // ambil semua data yang ada di cookie
             $shoppingCart = Room::whereIn('id', $cookieCart)
                                     ->get(['id', 'image1', 'name_product', 'category', 'price']);
-        }
-        $total = 0;
-        // menampilkan keranjang belanja ada yang sama
-        $shoppingDuplikat = collect();
-        foreach ($cookieCart as $valueCookie) {
-             foreach ($shoppingCart as $shopping) {
-                if ($valueCookie && $shopping->id) {
-                    $shoppingDuplikat->push([
-                            'id' => $shopping->id,
-                            'image1' => $shopping->image1,
-                            'name_product' => $shopping->name_product,
-                            'category' => $shopping->category,
-                            'price' => $shopping->price
-                        ]);
+
+            // menampilkan keranjang belanja ada yang sama
+    
+            foreach ($cookieCart as $valueCookie) {
+                    foreach ($shoppingCart as $shopping) {
+                    if ($valueCookie === $shopping->id) {
+
+                        $dataShopping->push([
+                                'id' => $shopping->id,
+                                'image1' => $shopping->image1,
+                                'name_product' => $shopping->name_product,
+                                'category' => $shopping->category,
+                                'price' => $shopping->price
+                            ]);
+                    }
                 }
             }
-        }
-        $shoppingDuplikat->all();
-        foreach ($shoppingCart as $cart) {
-            $total += $cart->price;
+            $dataShopping->all();
+            foreach ($dataShopping as $cart) {
+                $total += $cart['price'];
+            }
         }
         return view('cart', [
-            'shopping_cart' => $shoppingCart,
-            'total' => $total,
-            'shopping_duplikat' => $shoppingDuplikat
+            'shopping_cart' => $dataShopping,
+            'total' => $total
         ]);
     }
 }
