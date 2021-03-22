@@ -4,6 +4,8 @@ use App\Http\Controllers\AjaxRoomController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ShippingDetailsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +31,7 @@ Route::get('/details/{room}', [IndexController::class, 'details']);
 // add to cart
 Route::get('/add-to-cart/{id}', [IndexController::class, 'addToCart']);
 Route::get('/cart', [IndexController::class, 'cart']);
+Route::post('/cart', [ShippingDetailsController::class, 'store']);
 
 // halaman sukses -> shipping details
 Route::get('/success', function () {

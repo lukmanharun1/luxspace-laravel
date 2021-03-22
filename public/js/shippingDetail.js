@@ -1,39 +1,43 @@
-let data = {
-    "complete-name": "",
-    "email-address": "",
-    address: "",
-    "phone-number": "",
-    courier: "",
-    payment: "",
-};
-
-const inputs = document.querySelectorAll("#shipping-detail input[data-input]");
-for (let index = 0; index < inputs.length; index++) {
-    const input = inputs[index];
-    input.addEventListener("change", function (event) {
-        data[event.target.id] = event.target.value;
-        check();
+// ambil seluruh courier
+const couriers = document.querySelectorAll(`form input[name='courier']`);
+couriers.forEach((courier) => {
+    courier.nextElementSibling.addEventListener("click", function (e) {
+        // hapus seluruh attribut checked
+        e.target.parentElement.parentElement.parentElement
+            .querySelectorAll(`input[name='courier']`)
+            .forEach((element) => element.removeAttribute("checked"));
+        // lalu tambahkan attribut checked
+        // jika yang di klik image
+        if (e.target.previousElementSibling === null) {
+            e.target.parentElement.previousElementSibling.setAttribute(
+                "checked",
+                ""
+            );
+        } else {
+            // jika yang di klik button
+            e.target.previousElementSibling.setAttribute("checked", "");
+        }
     });
-}
+});
 
-const options = document.querySelectorAll("#shipping-detail button[data-name]");
-for (let index = 0; index < options.length; index++) {
-    const option = options[index];
-    option.addEventListener("click", function () {
-        const value = this.attributes["data-value"].value;
-        const name = this.attributes["data-name"].value;
-
-        data[name] = value;
-        check();
+// ambil seluruh payment
+const payments = document.querySelectorAll(`form input[name='payment']`);
+payments.forEach((payment) => {
+    payment.nextElementSibling.addEventListener("click", function (e) {
+        // hapus seluruh attribut checked
+        e.target.parentElement.parentElement.parentElement
+            .querySelectorAll(`input[name='payment']`)
+            .forEach((element) => element.removeAttribute("checked"));
+        // lalu tambahkan attribut checked
+        // jika yang di klik image
+        if (e.target.previousElementSibling === null) {
+            e.target.parentElement.previousElementSibling.setAttribute(
+                "checked",
+                ""
+            );
+        } else {
+            // jika yang di klik button
+            e.target.previousElementSibling.setAttribute("checked", "");
+        }
     });
-}
-function check() {
-    console.log(data);
-    const find = Object.values(data).filter((item) => item === "");
-    console.log("ok" + Object.values(data).length);
-    if (find.length === 0) {
-        document.querySelector(
-            "#shipping-detail button[type='submit']"
-        ).disabled = false;
-    }
-}
+});

@@ -2,6 +2,11 @@
 @section('title', 'Luxspace ~ Saingan IKEA')
 @push('include-css')
 <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+<style>
+  form input[type='radio']:checked ~ button {
+    border-color: rgb(254, 202, 202);
+  }
+</style>
 @endpush
 @section('content')
   @include('layouts.header')
@@ -150,7 +155,8 @@
         <!-- START: shipping details -->
         <div class="w-full md:px-4 md:w-4/12" id="shipping-detail">
           <div class="bg-gray-100 px-4 py-6 md:p-8 md:rounded-3xl">
-            <form action="/success">
+            <form action="" method="POST">
+              @csrf
               <div class="flex flex-start mb-6">
                 <h3 class="text-2xl">Shipping Details</h3>
               </div>
@@ -160,9 +166,10 @@
                   >Complete Name</label
                 >
                 <input
-                  data-input
+                  name="complete_name"
                   type="text"
                   id="complete-name"
+                  required
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                   placeholder="Input your name"
                 />
@@ -175,7 +182,8 @@
                   >Email address</label
                 >
                 <input
-                  data-input
+                  name="email_address"
+                  required
                   type="email"
                   id="email-address"
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
@@ -184,24 +192,26 @@
               </div>
               <!-- END: email address -->
 
-              <!-- START: email address -->
+              <!-- START: address -->
               <div class="flex flex-col mb-4">
                 <label for="address" class="text-sm">Address</label>
                 <input
-                  data-input
+                  required
+                  name="address"
                   type="text"
                   id="address"
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                   placeholder="Input your address"
                 />
               </div>
-              <!-- END: email address -->
+              <!-- END: address -->
 
               <!-- START: Phone Number -->
               <div class="flex flex-col mb-4">
                 <label for="phone-number" class="text-sm">Phone Number</label>
                 <input
-                  data-input
+                  required
+                  name="phone_number"
                   type="tel"
                   id="phone-number"
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
@@ -216,11 +226,10 @@
                 <div class="flex -mx-2 flex-wrap">
                   <!-- START: courier 1 -->
                   <div class="px-2 w-6/12 h-24 mb-4">
+                    <input type="radio" class="hidden" name="courier" value="fedex" />
                     <button
-                      data-value="fedex"
-                      data-name="courier"
                       type="button"
-                      class="border border-gray-200 focus:outline-none focus:border-red-200 flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/courier/logo-fedex.png"
@@ -233,11 +242,10 @@
 
                   <!-- START: courier 2 -->
                   <div class="px-2 w-6/12 h-24 mb-4">
+                    <input type="radio" class="hidden" name="courier" value="dhl" />
                     <button
-                      data-value="dhl"
-                      data-name="courier"
                       type="button"
-                      class="border border-gray-200 focus:outline-none focus:border-red-200 flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/courier/logo-dhl.png"
@@ -257,11 +265,10 @@
                 <div class="flex -mx-2 flex-wrap">
                   <!-- START: payment 1 -->
                   <div class="px-2 w-6/12 h-24 mb-4">
+                    <input type="radio" class="hidden" name="payment" value="midtrans" />
                     <button
-                      data-value="midtrans"
-                      data-name="payment"
                       type="button"
-                      class="border border-gray-200 focus:outline-none focus:border-red-200 flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-midtrans.png"
@@ -274,11 +281,10 @@
 
                   <!-- START: payment 2 -->
                   <div class="px-2 w-6/12 h-24 mb-4">
+                    <input type="radio" class="hidden" name="payment" value="mastercard" />
                     <button
-                      data-value="mastercard"
-                      data-name="payment"
                       type="button"
-                      class="border border-gray-200 focus:outline-none focus:border-red-200 flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-mastercard.png"
@@ -291,11 +297,10 @@
 
                   <!-- START: payment 3 -->
                   <div class="px-2 w-6/12 h-24 mb-4">
+                    <input type="radio" class="hidden" name="payment" value="bitcoin" />
                     <button
-                      data-value="bitcoin"
-                      data-name="payment"
                       type="button"
-                      class="border border-gray-200 focus:outline-none focus:border-red-200 flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-bitcoin.png"
@@ -308,11 +313,10 @@
 
                   <!-- START: payment 4 -->
                   <div class="px-2 w-6/12 h-24 mb-4">
+                    <input type="radio" class="hidden" name="payment" value="american_express" />
                     <button
-                      data-value="american-express"
-                      data-name="payment"
                       type="button"
-                      class="border border-gray-200 focus:outline-none focus:border-red-200 flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-american-express.png"
@@ -329,7 +333,6 @@
               <div class="text-center">
                 <button
                   type="submit"
-                  disabled
                   class="bg-pink-400 text-black focus:bg-black focus:outline-none w-full py-3 rounded-full text-lg focus:text-pink-400 transition-all duration-200 px-6"
                 >
                   Checkout Now

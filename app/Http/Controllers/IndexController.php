@@ -112,16 +112,15 @@ class IndexController extends Controller
             // menampilkan keranjang belanja ada yang sama
     
             foreach ($cookieCart as $valueCookie) {
-                    foreach ($shoppingCart as $shopping) {
+                foreach ($shoppingCart as $shopping) {
                     if ($valueCookie === $shopping->id) {
-
                         $dataShopping->push([
-                                'id' => $shopping->id,
-                                'image1' => $shopping->image1,
-                                'name_product' => $shopping->name_product,
-                                'category' => $shopping->category,
-                                'price' => $shopping->price
-                            ]);
+                            'id' => $shopping->id,
+                            'image1' => $shopping->image1,
+                            'name_product' => $shopping->name_product,
+                            'category' => $shopping->category,
+                            'price' => $shopping->price
+                        ]);
                     }
                 }
             }
