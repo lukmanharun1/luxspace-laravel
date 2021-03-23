@@ -166,13 +166,17 @@
                   >Complete Name</label
                 >
                 <input
-                  name="complete_name"
+                  name="name"
                   type="text"
                   id="complete-name"
                   required
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                   placeholder="Input your name"
+                  value="{{ old('name') }}"
                 />
+                @error('name')
+                  <b class="text-red-500 text-sm">{{ $message }}</b>
+                @enderror
               </div>
               <!-- END: input complete name -->
 
@@ -185,10 +189,14 @@
                   name="email_address"
                   required
                   type="email"
+                  value="{{ old('email_address') }}"
                   id="email-address"
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                   placeholder="Input your email address"
                 />
+                @error('email_address')
+                  <b class="text-red-500 text-sm">{{ $message }}</b>
+                @enderror
               </div>
               <!-- END: email address -->
 
@@ -199,10 +207,14 @@
                   required
                   name="address"
                   type="text"
+                  value="{{ old('address') }}"
                   id="address"
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                   placeholder="Input your address"
                 />
+                @error('address')
+                  <b class="text-red-500 text-sm">{{ $message }}</b>
+                @enderror
               </div>
               <!-- END: address -->
 
@@ -213,10 +225,14 @@
                   required
                   name="phone_number"
                   type="tel"
+                  value="{{ old('phone_number') }}"
                   id="phone-number"
                   class="border border-gray-200 rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
                   placeholder="Input your phone number"
                 />
+                @error('phone_number')
+                  <b class="text-red-500 text-sm">{{ $message }}</b>
+                @enderror
               </div>
               <!-- END: Phone Number -->
 
@@ -256,6 +272,9 @@
                   </div>
                   <!-- END: courier 2 -->
                 </div>
+                @error('courier')
+                  <b class="text-red-500 text-sm">{{ $message }}</b>
+                @enderror
               </div>
               <!-- END: Choose courier -->
 
@@ -327,6 +346,9 @@
                   </div>
                   <!-- END: payment 4 -->
                 </div>
+                @error('courier')
+                  <b class="text-red-500 text-sm">{{ $message }}</b>
+                @enderror
               </div>
               <!-- END: Choose Payment -->
 

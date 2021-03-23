@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShippingDetailsRequest;
+use App\Models\Room;
+use App\Models\ShippingDetail;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class ShippingDetailsController extends Controller
@@ -32,9 +36,56 @@ class ShippingDetailsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ShippingDetailsRequest $request)
     {
-        return $request;
+        // initialisasi
+        $shoppingCart = [];
+        $total = 0;
+        $dataShopping = collect();
+        if (isset($_COOKIE['cart'])) {
+            $cookieCart = json_decode($_COOKIE['cart']);
+            
+            // ambil semua data yang ada di cookie
+            $shoppingCart = Room::whereIn('id', $cookieCart)
+                                    ->get(['id', 'image1', 'name_product', 'category', 'price']);
+
+            // menampilkan keranjang belanja ada yang sama
+    
+            foreach ($cookieCart as $valueCookie) {
+                foreach ($shoppingCart as $shopping) {
+                    if ($valueCookie === $shopping->id) {
+                        $dataShopping->push([
+                            'id' => $shopping->id,
+                            'image1' => $shopping->image1,
+                            'name_product' => $shopping->name_product,
+                            'category' => $shopping->category,
+                            'price' => $shopping->price
+                        ]);
+                    }
+                }
+            }
+            $dataShopping->all();
+            foreach ($dataShopping as $cart) {
+                $total += $cart['price'];
+            }
+            $create = [
+                'name' => $request->name,
+                'email_address' => $request->email_address,
+                'address' => $request->address,
+                'phone_number' => $request->phone_number,
+                'courier' => $request->courier,
+                'payment' => $request->payment,
+                'total_price' => $total,
+                'status' => 'success'
+            ];
+    
+            try {
+                $shippingDetail = ShippingDetail::create($create);
+                redirect('/success');
+            } catch (QueryException $e) {
+                echo $e->getMessage();
+            }
+        }
     }
 
     /**

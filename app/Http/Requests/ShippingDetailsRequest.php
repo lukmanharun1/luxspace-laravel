@@ -24,7 +24,12 @@ class ShippingDetailsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|min:6',
+            'email_address' => 'required|email',
+            'address' => 'required|min:20',
+            'phone_number' => 'required|numeric|min:11',
+            'courier' => 'required|in:fedex,dhl',
+            'payment' => 'required|in:midtrans,mastercard,bitcoin,american_express'
         ];
     }
 }

@@ -18,9 +18,11 @@ class CreateShippingDetailsTable extends Migration
             $table->string('name', 100);
             $table->string('email_address', 100);
             $table->longText('address');
-            $table->integer('phone_number');
+            $table->string('phone_number', 15);
             $table->string('courier', 100);
             $table->string('payment', 100);
+            $table->integer('total_price');
+            $table->enum('status', ['success', 'pending', 'failed']);
             $table->timestamps();
         });
     }
