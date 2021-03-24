@@ -1,12 +1,13 @@
 @extends('layouts.struktur-html')
 @section('title', 'Luxspace ~ Saingan IKEA')
 @push('include-css')
-<link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-<style>
-  form input[type='radio']:checked ~ button {
-    border-color: rgb(254, 202, 202);
-  }
-</style>
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+  <style>
+    form input[type='radio']:checked ~ button {
+      border-color: rgb(254, 202, 202);
+      border-width: 1.5px;
+    }
+  </style>
 @endpush
 @section('content')
   @include('layouts.header')
@@ -245,7 +246,7 @@
                     <input type="radio" class="hidden" name="courier" value="fedex" />
                     <button
                       type="button"
-                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-1 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/courier/logo-fedex.png"
@@ -261,7 +262,7 @@
                     <input type="radio" class="hidden" name="courier" value="dhl" />
                     <button
                       type="button"
-                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-1 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/courier/logo-dhl.png"
@@ -287,7 +288,7 @@
                     <input type="radio" class="hidden" name="payment" value="midtrans" />
                     <button
                       type="button"
-                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-1 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-midtrans.png"
@@ -303,7 +304,7 @@
                     <input type="radio" class="hidden" name="payment" value="mastercard" />
                     <button
                       type="button"
-                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-1 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-mastercard.png"
@@ -319,7 +320,7 @@
                     <input type="radio" class="hidden" name="payment" value="bitcoin" />
                     <button
                       type="button"
-                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-1 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-bitcoin.png"
@@ -335,7 +336,7 @@
                     <input type="radio" class="hidden" name="payment" value="american_express" />
                     <button
                       type="button"
-                      class="border-2 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
+                      class="border-1 border-gray-200 focus:outline-none flex items-center justify-center rounded-xl bg-white w-full h-full"
                     >
                       <img
                         src="./images/content/payment/logo-american-express.png"
@@ -369,8 +370,6 @@
   </section>
 
   <!-- END: cart -->
-
-
   @include('layouts.aside-menu')
   @include('layouts.footer')
   <!-- END: Footer -->

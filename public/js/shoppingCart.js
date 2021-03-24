@@ -75,7 +75,6 @@ if (shoppingCart) {
                 const price = prices[i];
                 harga += parseInt(price.dataset.price);
             }
-            console.log(harga / 2);
             // data price harus / 2 karena element double untuk handphone & laptop
             // hitung total harga + ppn 10 %
             harga = harga / 2 + harga / 2 / 10;

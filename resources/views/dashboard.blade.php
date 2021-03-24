@@ -108,8 +108,11 @@
             </td>
             {{-- name product --}}
             <td class="border border-solid border-black">{{ $room->name_product }}</td>
+            @php
+              $category = explode('_', $room->category);
+            @endphp
             {{-- category --}}
-            <td class="border border-solid border-black">{{ $room->category }}</td>
+            <td class="border border-solid border-black">{{ ucfirst($category[0]) . ' ' . $category[1] }}</td>
             {{-- price --}}
             <td class="border border-solid border-black">IDR {{ number_format($room->price,0, ',', '.') }}</td>
             {{-- images --}}

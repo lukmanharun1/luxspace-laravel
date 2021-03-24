@@ -80,12 +80,12 @@ class ShippingDetailsController extends Controller
             ];
     
             try {
-                $shippingDetail = ShippingDetail::create($create);
-                redirect('/success');
+                ShippingDetail::create($create);
+                return redirect('/success');
             } catch (QueryException $e) {
                 echo $e->getMessage();
             }
-        }
+        } 
     }
 
     /**
