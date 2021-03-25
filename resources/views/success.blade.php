@@ -51,6 +51,8 @@
   <script src="js/utils-class.js"></script>
   {{-- menu toggler --}}
   <script src="js/menu-toggler.js"></script>
+  {{-- icon keranjang --}}
+  <script src="{{ asset('js/iconKeranjang.js') }}"></script>
   {{-- accourdion khusus pengguna handphone --}}
   <script src="js/accourdion.js"></script>
  @endpush
