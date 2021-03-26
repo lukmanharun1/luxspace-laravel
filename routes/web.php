@@ -19,7 +19,9 @@ use App\Http\Controllers\ShippingDetailsController;
 
 // halaman utama
 Route::get('/', [IndexController::class, 'index']);
-
+Route::get('/email', function () {
+    return view('send-email.shippingDetails');
+});
 // category rooms 
 Route::get('/category-room/{room}', [IndexController::class, 'show'])->name('category-rooms');
 
