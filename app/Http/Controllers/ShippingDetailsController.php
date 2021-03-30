@@ -40,7 +40,6 @@ class ShippingDetailsController extends Controller
     public function store(ShippingDetailsRequest $request)
     {
         // initialisasi
-        $shoppingCart = [];
         $total = 0;
         $dataShopping = collect();
         if (isset($_COOKIE['cart'])) {
@@ -56,10 +55,8 @@ class ShippingDetailsController extends Controller
                 foreach ($shoppingCart as $shopping) {
                     if ($valueCookie === $shopping->id) {
                         $dataShopping->push([
-                            'id' => $shopping->id,
                             'image1' => $shopping->image1,
                             'name_product' => $shopping->name_product,
-                            'category' => $shopping->category,
                             'price' => $shopping->price
                         ]);
                     }
@@ -80,14 +77,35 @@ class ShippingDetailsController extends Controller
                 'total_price' => $total,
                 'status' => 'pending'
             ];
-            
             try {
                 // set session
                 session(['shipping' => true]);
                 // insert data
                 ShippingDetail::create($create);
-                // send email
-                Mail::to($request->email_address)->send(new ShippingDetailsEmail($create));
+                $courier = [
+                    'fedex' => 'logo-fedex.png',
+                    'dhl' => 'logo-dhl.png'
+                ];
+
+                $payment = [
+                    'american_express' => 'logo-american-express.png',
+                    'bitcoin' => 'logo-bitcoin.png',
+                    'mastercard' => 'logo-mastercard.png',
+                    'midtrans' => 'logo-midtrans.png'
+                ];
+                // data untuk send email
+                $shippingDetails = [
+                    'your_name' => $request->name,
+                    'email_address' => $request->email_address,
+                    'address' => $request->address,
+                    'phone_number' => $request->phone_number,
+                    'image_courier' => $courier[$request->courier],
+                    'courier' => $request->courier,
+                    'image_payment' => $payment[$request->payment],
+                    'payment' => $request->payment
+                ];
+                
+                Mail::to($request->email_address)->send(new ShippingDetailsEmail($shippingDetails, $dataShopping, $total));
                 return redirect('/success');
             } catch (QueryException $e) {
                 echo $e->getMessage();

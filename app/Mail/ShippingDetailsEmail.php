@@ -16,10 +16,15 @@ class ShippingDetailsEmail extends Mailable
      *
      * @return void
      */
-    private array $data;
-    public function __construct($data = [])
+    private $shippingDetails; 
+    private $shoppingCart;
+    private $total;
+
+    public function __construct($shippingDetails = [], $shoppingCart = [], $total)
     {
-        $this->data = $data;
+        $this->shippingDetails = $shippingDetails;
+        $this->shoppingCart = $shoppingCart;
+        $this->total = $total;
     }
 
     /**
@@ -31,6 +36,10 @@ class ShippingDetailsEmail extends Mailable
     {
         return $this->from('admin@luxspace.com')
                     ->view('send-email.shippingDetails')
-                    ->with($this->data);
+                    ->with([
+                        'shipping_details' => $this->shippingDetails,
+                        'shopping_cart' => $this->shoppingCart,
+                        'total' => $this->total
+                    ]);
     }
 }

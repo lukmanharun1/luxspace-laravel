@@ -61,8 +61,8 @@
         </td>
         <td>
           <b>
-            Lukman
-            </b>
+            {{ $shipping_details['your_name'] }}
+          </b>
         </td>
       </tr>
       {{-- your email --}}
@@ -72,7 +72,7 @@
         </td>
         <td>
           <b>
-            nandes88.ni@gmail.com
+            {{ $shipping_details['email_address'] }}
           </b>
         </td>
       </tr>
@@ -83,7 +83,7 @@
         </td>
         <td style="width: calc(20vw + 100px);">
           <b>
-            Jalan hoscokroaminoto no 16 Jalan hoscokroaminoto no 16 Jalan hoscokroaminoto no 16 
+            {{ $shipping_details['address'] }}
           </b>
         </td>
       </tr>
@@ -94,7 +94,7 @@
         </td>
         <td>
           <b>
-            8953232432432423
+            {{ $shipping_details['phone_number'] }}
           </b>
         </td>
       </tr>
@@ -104,10 +104,11 @@
           Courier
         </td>
         <td>
-          {{-- <b>
-            fedex
-          </b> --}}
-          <img src="{{ asset('images/content/courier/logo-fedex.png') }}" alt="" style="max-width: 117px; max-height: 50px;">
+          <img 
+            src="{{ asset('images/content/courier/' . $shipping_details['image_courier']) }}" 
+            alt=" {{ $shipping_details['courier'] }}"
+            style="max-width: 117px; max-height: 50px;"
+          />
         </td>
       </tr>
       {{-- Payment --}}
@@ -116,10 +117,11 @@
           Payment
         </td>
         <td>
-          {{-- <b>
-            midtrans
-          </b> --}}
-          <img src="{{ asset('images/content/payment/logo-midtrans.png') }}" alt="" style="max-width: 117px; max-height: 50px;">
+          <img 
+            src="{{ asset('images/content/payment/' . $shipping_details['image_payment']) }}" 
+            alt="{{ $shipping_details['payment'] }}" 
+            style="max-width: 117px; max-height: 50px;"
+          />
         </td>
       </tr>
     </tbody>
@@ -139,22 +141,23 @@
       </tr>
     </thead>
     <tbody>
+      @foreach($shopping_cart as $cart)
       <tr align="center">
         <td>
-          <img src="{{ asset('images/upload_images/alas-kursi1.jpg-6059f8eac6bd6.jpg') }}" alt="shopping cart" width="80" height="80" />
+          <img src="{{ asset('images/upload_images/' . $cart['image1']) }}" alt="shopping cart" width="80" height="80" />
         </td>
         <td>
           <b>
-            
-            meja dan 4 kursi  meja dan 4 kursi
+            {{ $cart['name_product'] }}
           </b>
         </td>
         <td>
          <b>
-          IDR 200.000.000
+          IDR {{ number_format($cart['price'],0, ',', '.') }}
          </b>
         </td>
       </tr>
+      @endforeach
       {{-- START: Total --}}
       <tr class="total"> 
         {{-- kosongkan bagian image --}}
@@ -164,7 +167,7 @@
         </td>
         <td align="center">termasuk ppn 10%</td>
         <td align="center">
-          <b>IDR 12.000.000.000.000</b>
+          <b>IDR {{ number_format($total + $total / 10,0, ',', '.') }}</b>
         </td>
       </tr>
       <tr>
