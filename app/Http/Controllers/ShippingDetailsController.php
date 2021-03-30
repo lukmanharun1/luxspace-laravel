@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ShippingDetailsRequest;
+use App\Mail\ShippingDetailsEmail;
 use App\Models\Room;
 use App\Models\ShippingDetail;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 class ShippingDetailsController extends Controller
 {
     /**
@@ -68,6 +69,7 @@ class ShippingDetailsController extends Controller
             foreach ($dataShopping as $cart) {
                 $total += $cart['price'];
             }
+            // insert data
             $create = [
                 'name' => $request->name,
                 'email_address' => $request->email_address,
@@ -76,11 +78,16 @@ class ShippingDetailsController extends Controller
                 'courier' => $request->courier,
                 'payment' => $request->payment,
                 'total_price' => $total,
-                'status' => 'success'
+                'status' => 'pending'
             ];
-    
+            
             try {
+                // set session
+                session(['shipping' => true]);
+                // insert data
                 ShippingDetail::create($create);
+                // send email
+                Mail::to($request->email_address)->send(new ShippingDetailsEmail($create));
                 return redirect('/success');
             } catch (QueryException $e) {
                 echo $e->getMessage();

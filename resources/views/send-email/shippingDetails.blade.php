@@ -1,18 +1,46 @@
 @extends('layouts.struktur-html')
 @section('title', 'Shipping Details')
 @push('include-css')
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
-  <style>
-    .grid.justify-center {
-      grid-template-rows: 25px;
-      grid-template-columns: 80px minmax(0, 250px) minmax(0, 350px);
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+  table tbody tr td.pay-now a {
+    text-decoration: none;
+    background-color: #F9CADA; 
+    color: black; 
+    border-radius: 999px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+  }
+  table tbody tr td.pay-now a:hover {
+    color: #F9CADA;
+    background-color: black;
+  }
+
+  /* responsive untuk tablet & handphone */
+  @media (max-width: 768px) {
+    .shipping-details, .shopping-cart {
+      font-size: 1rem !important;
     }
-  </style>
+    table tbody tr td.pay-now a  {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+    
+  }
+  .total td {
+    border-top: 1px solid black;
+  }
+</style>
 @endpush
 
 @section('content')
   {{-- START: header --}}
-  <header class="flex justify-center items-center mt-3">
+  <header style="text-align: center">
     <img
       src="{{ asset('images/design/logo.svg') }}"
       alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece"
@@ -21,81 +49,139 @@
   {{-- END: header --}}
 
   {{-- START: Shipping Details --}}
-  <section class="flex justify-center items-center mt-3">
-    <h3 class="text-2xl">Shipping Details</h3>
+  <section style="text-align: center">
+    <h3 style="font-size: 1.5rem">Shipping Details</h3>
   </section>
-  <div class="grid md:mx-auto mt-3 w-1/3" style=" grid-template-columns: minmax(100px, 200px) minmax(100px, 450px); grid-template-rows: repeat(6, minmax(50px, 1fr))">
-    <div class="text-lg md:justify-self-end">
-     Your name
-    </div>
-    <b class="text-lg md:ml-5">lukman</b>
-    <div class="text-lg md:justify-self-end">
-      Email address
-    </div>
-    <b class="text-lg md:ml-5">
-      lukman@gmail.com
-    </b>
-
-    <div class="text-lg md:justify-self-end">
-     Address
-    </div>
-    <b class="text-lg md:ml-5">
-      jalan hostcokroaminoto no.16
-    </b>
-    <div class="text-lg md:justify-self-end">
-      Phone number
-     </div>
-     <b class="text-lg md:ml-5">
-      8953232432432423
-     </b>
-     <div class="text-lg md:justify-self-end">
-       Courier
-     </div>
-     <b class="text-lg md:ml-5">
-      fedex
-     </b>
-     <div class="text-lg md:justify-self-end">
-     Payment
-    </div>
-    <b class="text-lg md:ml-5">
-     midtrans
-    </b>
-  </div>
+  <table class="shipping-details" style="font-size: 1.125rem; margin: 0 auto;" cellpadding="5" cellspacing="4">
+    <tbody>
+      {{-- your name --}}
+      <tr>
+        <td>
+          Your name
+        </td>
+        <td>
+          <b>
+            Lukman
+            </b>
+        </td>
+      </tr>
+      {{-- your email --}}
+      <tr>
+        <td>
+           Your email
+        </td>
+        <td>
+          <b>
+            nandes88.ni@gmail.com
+          </b>
+        </td>
+      </tr>
+      {{-- address --}}
+      <tr>
+        <td>
+           Address
+        </td>
+        <td style="width: calc(20vw + 100px);">
+          <b>
+            Jalan hoscokroaminoto no 16 Jalan hoscokroaminoto no 16 Jalan hoscokroaminoto no 16 
+          </b>
+        </td>
+      </tr>
+      {{-- Phone number --}}
+      <tr>
+        <td>
+          Phone number
+        </td>
+        <td>
+          <b>
+            8953232432432423
+          </b>
+        </td>
+      </tr>
+      {{-- Courier --}}
+      <tr>
+        <td>
+          Courier
+        </td>
+        <td>
+          {{-- <b>
+            fedex
+          </b> --}}
+          <img src="{{ asset('images/content/courier/logo-fedex.png') }}" alt="" style="max-width: 117px; max-height: 50px;">
+        </td>
+      </tr>
+      {{-- Payment --}}
+      <tr>
+        <td>
+          Payment
+        </td>
+        <td>
+          {{-- <b>
+            midtrans
+          </b> --}}
+          <img src="{{ asset('images/content/payment/logo-midtrans.png') }}" alt="" style="max-width: 117px; max-height: 50px;">
+        </td>
+      </tr>
+    </tbody>
+   </table>
   {{-- END: Shipping Details --}}
 
   {{-- START: shopping cart --}}
-  <section class="flex justify-center items-center mb-3">
-    <h3 class="text-2xl">Shopping Cart</h3>
+  <section style="text-align: center; margin-bottom: 0.75rem;">
+    <h3 style="font-size: 1.5rem">Shopping Cart</h3>
   </section>
-  <div class="grid justify-center">
-    <p class="justify-self-center">Photo</p>
-    <p class="justify-self-center">Name product</p>
-    <p class="justify-self-center">Price</p>
-    <img src="{{ asset('images/upload_images/alas-kursi1.jpg-6059f8eac6bd6.jpg') }}" alt="">
-    <b class="text-xl place-self-center">meja dan 4 kursi</b>
-    <b class="text-xl place-self-center">IDR 200.000.000</b>
-    <img src="{{ asset('images/upload_images/alas-kursi1.jpg-6059f8eac6bd6.jpg') }}" alt="">
-    <b class="text-xl place-self-center">meja dan 4 kursi</b>
-    <b class="text-xl place-self-center">IDR 200.000.000</b>
-    <div></div>
-    <b class="text-xl justify-self-center">Total</b>
-    <span class="text-xl justify-self-center">
-      <b>IDR 12.000.000</b> 
-      termasuk ppn 10%
-      <a
-      href="#"
-      class="bg-pink-400 text-black hover:bg-black hover:text-pink-400 rounded-full px-12 py-3 inline-block"
-    >
-     Pay Now
-    </a>
-    </span>
-  </div>
+  <table style="font-size: 1.25rem; margin: 0 auto;" cellpadding="8" cellspacing="0" class="shopping-cart">
+    <thead align="center">
+      <tr>
+        <td>Photo</td>
+        <td>Name product</td>
+        <td>Price</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr align="center">
+        <td>
+          <img src="{{ asset('images/upload_images/alas-kursi1.jpg-6059f8eac6bd6.jpg') }}" alt="shopping cart" width="80" height="80" />
+        </td>
+        <td>
+          <b>
+            
+            meja dan 4 kursi  meja dan 4 kursi
+          </b>
+        </td>
+        <td>
+         <b>
+          IDR 200.000.000
+         </b>
+        </td>
+      </tr>
+      {{-- START: Total --}}
+      <tr class="total"> 
+        {{-- kosongkan bagian image --}}
+        <td style="display: none"></td>
+        <td align="center">
+          <b>Total</b>
+        </td>
+        <td align="center">termasuk ppn 10%</td>
+        <td align="center">
+          <b>IDR 12.000.000.000.000</b>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="pay-now">
+          <a
+            href="#">
+            <b>
+              Pay Now
+            </b>
+          </a>
+        </td>
+      </tr>
+      {{-- END: Total --}}
+    </tbody>
+  </table>
   {{-- END: shopping cart --}}
-
-  {{-- START: pay now --}}
-  <div class="flex justify-center items-center">
-   
-  </div>
-  <br>
-  {{-- END: pay now --}}
+  
 @endsection
