@@ -12,8 +12,7 @@
     color: black; 
     border-radius: 999px;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 15px;
     display: block;
   }
   table tbody tr td.pay-now a:hover {
@@ -26,11 +25,10 @@
     .shipping-details, .shopping-cart {
       font-size: 1rem !important;
     }
-    table tbody tr td.pay-now a  {
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
+    table tbody tr td.pay-now a {
+      padding-left: 5px;
+      padding-right: 5px;
     }
-    
   }
   .total td {
     border-top: 1px solid black;
@@ -175,7 +173,7 @@
         <td></td>
         <td class="pay-now">
           <a
-            href="#">
+            href="{{ url("/success/$token") }}">
             <b>
               Pay Now
             </b>
@@ -186,5 +184,4 @@
     </tbody>
   </table>
   {{-- END: shopping cart --}}
-  
 @endsection

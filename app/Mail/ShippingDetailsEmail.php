@@ -19,12 +19,14 @@ class ShippingDetailsEmail extends Mailable
     private $shippingDetails; 
     private $shoppingCart;
     private $total;
+    private $token;
 
-    public function __construct($shippingDetails = [], $shoppingCart = [], $total)
+    public function __construct($shippingDetails = [], $shoppingCart = [], $total, $token)
     {
         $this->shippingDetails = $shippingDetails;
         $this->shoppingCart = $shoppingCart;
         $this->total = $total;
+        $this->token = $token;
     }
 
     /**
@@ -39,7 +41,8 @@ class ShippingDetailsEmail extends Mailable
                     ->with([
                         'shipping_details' => $this->shippingDetails,
                         'shopping_cart' => $this->shoppingCart,
-                        'total' => $this->total
+                        'total' => $this->total,
+                        'token' => $this->token
                     ]);
     }
 }

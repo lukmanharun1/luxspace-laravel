@@ -11,6 +11,6 @@ class ShippingDetail extends Model
     protected $fillable = [
         'name', 'email_address', 'address', 
         'phone_number', 'courier', 'payment',
-        'total_price', 'status'
+        'total_price', 'status', 'token'
     ];
 }

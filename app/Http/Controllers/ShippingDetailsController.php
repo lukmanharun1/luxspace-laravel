@@ -12,33 +12,13 @@ use Illuminate\Support\Facades\Mail;
 class ShippingDetailsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ShippingDetailsRequest $request)
-    {
+    { 
         // initialisasi
         $total = 0;
         $dataShopping = collect();
@@ -67,6 +47,8 @@ class ShippingDetailsController extends Controller
                 $total += $cart['price'];
             }
             // insert data
+            // buat token format nya email-waktuSekarang
+            $token = hash('sha256', $request->email . '-' . now());
             $create = [
                 'name' => $request->name,
                 'email_address' => $request->email_address,
@@ -75,10 +57,11 @@ class ShippingDetailsController extends Controller
                 'courier' => $request->courier,
                 'payment' => $request->payment,
                 'total_price' => $total,
-                'status' => 'pending'
+                'status' => 'pending',
+                'token' => $token
             ];
             try {
-                // set session
+                // set session -> untuk cek email
                 session(['shipping' => true]);
                 // insert data
                 ShippingDetail::create($create);
@@ -104,15 +87,28 @@ class ShippingDetailsController extends Controller
                     'image_payment' => $payment[$request->payment],
                     'payment' => $request->payment
                 ];
-                
-                Mail::to($request->email_address)->send(new ShippingDetailsEmail($shippingDetails, $dataShopping, $total));
-                return redirect('/success');
+               
+                // send Email
+                Mail::to($request->email_address)->send(new ShippingDetailsEmail(
+                    $shippingDetails, $dataShopping, $total, $token
+                ));
+                return redirect('/cek-email');
             } catch (QueryException $e) {
                 echo $e->getMessage();
             }
         } 
     }
 
+    public function cekEmail(Request $request)
+    {
+        // cek session shipping
+        if ($request->session()->get('shipping')) {
+            // hapus session 
+            // $request->session()->forget('shipping');
+            return view('periksa-email');
+        }
+        return abort(404);
+    }
     /**
      * Display the specified resource.
      *

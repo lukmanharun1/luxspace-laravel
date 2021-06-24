@@ -34,12 +34,12 @@ Route::get('/details/{room}', [IndexController::class, 'details']);
 Route::get('/add-to-cart/{id}', [IndexController::class, 'addToCart']);
 Route::get('/cart', [IndexController::class, 'cart']);
 Route::post('/cart', [ShippingDetailsController::class, 'store']);
+Route::get('/cek-email', [ShippingDetailsController::class, 'cekEmail']);
 
 // halaman sukses -> shipping details
 Route::get('/success', function () {
     return view('success');
 });
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RoomController::class, 'index']);
