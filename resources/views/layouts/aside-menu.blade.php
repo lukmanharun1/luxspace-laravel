@@ -75,7 +75,7 @@
             <label class="relative w-full">
               <input
                 type="text"
-                class="bg-gray-100 rounded-xl py-3 px-5 w-full focus:outline-none"
+                class="bg-gray-100 rounded-xl py-3 px-5 w-full border-none"
                 placeholder="Your email adress"
               />
               <button class="bg-pink-400 absolute rounded-xl right-0 p-3">

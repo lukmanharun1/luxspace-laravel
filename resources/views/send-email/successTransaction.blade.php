@@ -1,5 +1,5 @@
 @extends('layouts.struktur-html')
-@section('title', 'Pay Now ~ Luxspace')
+@section('title', 'Pembayaran Berhasil ~ Luxspace')
 @push('include-css')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
 <style>
@@ -72,7 +72,7 @@
         </td>
         <td>
           <b>
-            {{ $shipping_details['your_name'] }}
+            {{ $shipping_details->name }}
           </b>
         </td>
       </tr>
@@ -83,7 +83,7 @@
         </td>
         <td>
           <b>
-            {{ $shipping_details['email_address'] }}
+            {{ $shipping_details->email_address }}
           </b>
         </td>
       </tr>
@@ -94,7 +94,7 @@
         </td>
         <td style="width: calc(20vw + 100px);">
           <b>
-            {{ $shipping_details['address'] }}
+            {{ $shipping_details->address }}
           </b>
         </td>
       </tr>
@@ -105,7 +105,7 @@
         </td>
         <td>
           <b>
-            {{ $shipping_details['phone_number'] }}
+            {{ $shipping_details->phone_number }}
           </b>
         </td>
       </tr>
@@ -116,8 +116,8 @@
         </td>
         <td>
           <img 
-            src="{{ asset('images/content/courier/' . $shipping_details['image_courier']) }}" 
-            alt=" {{ $shipping_details['courier'] }}"
+            src="{{ asset('images/content/courier/' . $shipping_details->image_courier) }}" 
+            alt=" {{ $shipping_details->courier }}"
             style="max-width: 117px; max-height: 50px;"
           />
         </td>
@@ -129,8 +129,8 @@
         </td>
         <td>
           <img 
-            src="{{ asset('images/content/payment/' . $shipping_details['image_payment']) }}" 
-            alt="{{ $shipping_details['payment'] }}" 
+            src="{{ asset('images/content/payment/' . $shipping_details->image_payment) }}" 
+            alt="{{ $shipping_details->payment }}" 
             style="max-width: 117px; max-height: 50px;"
           />
         </td>
@@ -155,16 +155,16 @@
       @foreach($shopping_cart as $cart)
       <tr align="center">
         <td>
-          <img src="{{ asset('images/upload_images/' . $cart['photo']) }}" alt="shopping cart" width="80" height="80" />
+          <img src="{{ asset('images/upload_images/' . $cart->photo) }}" alt="shopping cart" width="80" height="80" />
         </td>
         <td>
           <b>
-            {{ $cart['name_product'] }}
+            {{ $cart->name_product }}
           </b>
         </td>
         <td>
          <b>
-          IDR {{ number_format($cart['price'],0, ',', '.') }}
+          IDR <strike>{{ number_format($cart->price,0, ',', '.') }}</strike>
          </b>
         </td>
       </tr>
@@ -178,30 +178,23 @@
         </td>
         <td align="center">termasuk ppn 10%</td>
         <td align="center">
-          <b>IDR {{ number_format($total + $total / 10,0, ',', '.') }}</b>
+          <b>IDR <strike>{{ number_format($total + $total / 10,0, ',', '.') }}</strike></b>
         </td>
       </tr>
       <tr>
         <td></td>
-        <td></td>
-        <td class="pay-now">
-          <a
-            href="{{ url("/success/$token") }}"
-            <b>
-              Pay Now
-            </b>
-          </a>
-        </td>
+        <td colspan="2"><b>Pembayaran Berhasil!</b></td>
+        
       </tr>
       {{-- END: Total --}}
     </tbody>
   </table>
   {{-- END: shopping cart --}}
-    <!-- START: Footer -->
-    <footer>
-      <p class="text-sm">
-        Copyright 2021 • All Rights Reserved LuxSpace by Lukman Harun
-      </p>
-    </footer>
-    <!-- END: Footer -->
+  <!-- START: Footer -->
+  <footer>
+    <p class="text-sm">
+      Copyright 2021 • All Rights Reserved LuxSpace by Lukman Harun
+    </p>
+  </footer>
+  <!-- END: Footer -->
 @endsection

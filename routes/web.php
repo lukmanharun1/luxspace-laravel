@@ -5,7 +5,7 @@ use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ShippingDetailsController;
-
+use App\Http\Controllers\TransaksiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,10 +36,8 @@ Route::get('/cart', [IndexController::class, 'cart']);
 Route::post('/cart', [ShippingDetailsController::class, 'store']);
 Route::get('/cek-email', [ShippingDetailsController::class, 'cekEmail']);
 
-// halaman sukses -> shipping details
-Route::get('/success', function () {
-    return view('success');
-});
+// halaman pembayaran -> success
+Route::get('/success/{token}', [TransaksiController::class, 'pembayaran']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [RoomController::class, 'index']);

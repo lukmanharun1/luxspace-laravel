@@ -13,4 +13,10 @@ class ShippingDetail extends Model
         'phone_number', 'courier', 'payment',
         'total_price', 'status', 'token'
     ];
+
+    public function shoppingCart()
+    {
+        return $this->hasMany(ShoppingCart::class, 'id_shipping_details');
+    }
 }
+

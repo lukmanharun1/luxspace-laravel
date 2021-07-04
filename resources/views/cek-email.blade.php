@@ -22,18 +22,18 @@
 
   <!-- START: Congrats -->
   <!-- END: Congrats -->
-  <section class="py-4 md:py-16">
+  <section class="py-2">
     <div class="container mx-auto min-h-screen px-4">
       <div class="flex flex-col items-center justify-center">
         <div class="w-full md:w-4/12 text-center">
           <img
-            src="{{ asset('images/content/ilustration-success.png') }}"
+            src="./images/content/send-email.png"
             alt="ilustration success"
+            class="rounded-lg ml-11"
           />
-          <h2 class="text-3xl font-semibold mb-6">Ah yes it’s success!</h2>
-          <p class="text-lg mb-12">
-            Furniture yang anda beli akan kami kirimkan saat ini juga so now
-            please sit tight and be ready for it
+          <h2 class="text-3xl font-semibold my-2">Email Berhasil Dikirim!</h2>
+          <p class="text-lg mb-6">
+            Cek Email kamu Untuk Melakukan Pembayaran!
           </p>
           <a
             href="/"

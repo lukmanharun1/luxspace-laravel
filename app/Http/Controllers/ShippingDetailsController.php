@@ -6,6 +6,7 @@ use App\Http\Requests\ShippingDetailsRequest;
 use App\Mail\ShippingDetailsEmail;
 use App\Models\Room;
 use App\Models\ShippingDetail;
+use App\Models\ShoppingCart;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -20,7 +21,7 @@ class ShippingDetailsController extends Controller
     public function store(ShippingDetailsRequest $request)
     { 
         // initialisasi
-        $total = 0;
+        
         $dataShopping = collect();
         if (isset($_COOKIE['cart'])) {
             $cookieCart = json_decode($_COOKIE['cart']);
@@ -29,42 +30,44 @@ class ShippingDetailsController extends Controller
             $shoppingCart = Room::whereIn('id', $cookieCart)
                                     ->get(['id', 'image1', 'name_product', 'category', 'price']);
 
-            // menampilkan keranjang belanja ada yang sama
-    
-            foreach ($cookieCart as $valueCookie) {
-                foreach ($shoppingCart as $shopping) {
-                    if ($valueCookie === $shopping->id) {
-                        $dataShopping->push([
-                            'image1' => $shopping->image1,
-                            'name_product' => $shopping->name_product,
-                            'price' => $shopping->price
-                        ]);
+           
+            // buat token format nya email-waktuSekarang-uniqid
+            $token = hash('sha256', $request->email . '-' . now() . '-' . uniqid());
+            
+            try {
+                // insert data
+                // menampilkan keranjang belanja ada yang sama
+               $total = $this->getTotal($cookieCart, $shoppingCart);
+                $create = [
+                    'name' => $request->name,
+                    'email_address' => $request->email_address,
+                    'address' => $request->address,
+                    'phone_number' => $request->phone_number,
+                    'courier' => $request->courier,
+                    'payment' => $request->payment,
+                    'total_price' => $total,
+                    'status' => 'pending',
+                    'token' => $token
+                ];
+                
+                $idShipping = ShippingDetail::create($create)->id;
+                foreach ($cookieCart as $valueCookie) {
+                    foreach ($shoppingCart as $shopping) {
+                        if ($valueCookie === $shopping->id) {
+                            $dataShopping->push([
+                                'id_shipping_details' => $idShipping,
+                                'photo' => $shopping->image1,
+                                'name_product' => $shopping->name_product,
+                                'category' => $shopping->category,
+                                'price' => $shopping->price
+                            ]);
+                        }
                     }
                 }
-            }
-            $dataShopping->all();
-            foreach ($dataShopping as $cart) {
-                $total += $cart['price'];
-            }
-            // insert data
-            // buat token format nya email-waktuSekarang
-            $token = hash('sha256', $request->email . '-' . now());
-            $create = [
-                'name' => $request->name,
-                'email_address' => $request->email_address,
-                'address' => $request->address,
-                'phone_number' => $request->phone_number,
-                'courier' => $request->courier,
-                'payment' => $request->payment,
-                'total_price' => $total,
-                'status' => 'pending',
-                'token' => $token
-            ];
-            try {
-                // set session -> untuk cek email
-                session(['shipping' => true]);
-                // insert data
-                ShippingDetail::create($create);
+                
+                $dataShopping->all();
+                
+                ShoppingCart::insert($dataShopping->toArray());
                 $courier = [
                     'fedex' => 'logo-fedex.png',
                     'dhl' => 'logo-dhl.png'
@@ -92,20 +95,41 @@ class ShippingDetailsController extends Controller
                 Mail::to($request->email_address)->send(new ShippingDetailsEmail(
                     $shippingDetails, $dataShopping, $total, $token
                 ));
+                 // set session -> untuk cek email
+                 session(['cek-email' => true]);
                 return redirect('/cek-email');
             } catch (QueryException $e) {
-                echo $e->getMessage();
+                return $e->getMessage();
             }
-        } 
+        }
+        return abort(404);
+    }
+    private function getTotal($cookieCart, $shoppingCart)
+    {
+        $price = [];
+        $total = 0;
+        foreach ($cookieCart as $valueCookie) {
+            foreach ($shoppingCart as $shopping) {
+                if ($valueCookie === $shopping->id) {
+                    array_push($price, $shopping->price);
+                   
+                }
+            }
+        }
+        
+        foreach ($price as $cart) {
+            $total += $cart;
+        }
+        return $total;
     }
 
     public function cekEmail(Request $request)
     {
         // cek session shipping
-        if ($request->session()->get('shipping')) {
+        if ($request->session()->get('cek-email')) {
             // hapus session 
             // $request->session()->forget('shipping');
-            return view('periksa-email');
+            return view('cek-email');
         }
         return abort(404);
     }

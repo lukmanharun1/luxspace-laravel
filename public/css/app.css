@@ -14989,6 +14989,11 @@ ul.breadcrumb li:last-child a {
   outline-offset: 2px;
 }
 
+.outline-pink{
+  outline: 2px solid rgb(249, 202, 218);
+  outline-offset: 2px;
+}
+
 .focus-within\:outline-none:focus-within{
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -15004,6 +15009,11 @@ ul.breadcrumb li:last-child a {
   outline-offset: 2px;
 }
 
+.focus-within\:outline-pink:focus-within{
+  outline: 2px solid rgb(249, 202, 218);
+  outline-offset: 2px;
+}
+
 .focus\:outline-none:focus{
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -15016,6 +15026,11 @@ ul.breadcrumb li:last-child a {
 
 .focus\:outline-black:focus{
   outline: 2px dotted black;
+  outline-offset: 2px;
+}
+
+.focus\:outline-pink:focus{
+  outline: 2px solid rgb(249, 202, 218);
   outline-offset: 2px;
 }
 
@@ -46124,6 +46139,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .sm\:outline-pink{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .sm\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -46139,6 +46159,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .sm\:focus-within\:outline-pink:focus-within{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .sm\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -46151,6 +46176,11 @@ button[disabled]:hover{
 
   .sm\:focus\:outline-black:focus{
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .sm\:focus\:outline-pink:focus{
+    outline: 2px solid rgb(249, 202, 218);
     outline-offset: 2px;
   }
 
@@ -77105,6 +77135,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .md\:outline-pink{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .md\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -77120,6 +77155,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .md\:focus-within\:outline-pink:focus-within{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .md\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -77132,6 +77172,11 @@ button[disabled]:hover{
 
   .md\:focus\:outline-black:focus{
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .md\:focus\:outline-pink:focus{
+    outline: 2px solid rgb(249, 202, 218);
     outline-offset: 2px;
   }
 
@@ -108086,6 +108131,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .lg\:outline-pink{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .lg\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -108101,6 +108151,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .lg\:focus-within\:outline-pink:focus-within{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .lg\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -108113,6 +108168,11 @@ button[disabled]:hover{
 
   .lg\:focus\:outline-black:focus{
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .lg\:focus\:outline-pink:focus{
+    outline: 2px solid rgb(249, 202, 218);
     outline-offset: 2px;
   }
 
@@ -139067,6 +139127,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .xl\:outline-pink{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .xl\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -139082,6 +139147,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .xl\:focus-within\:outline-pink:focus-within{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .xl\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -139094,6 +139164,11 @@ button[disabled]:hover{
 
   .xl\:focus\:outline-black:focus{
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .xl\:focus\:outline-pink:focus{
+    outline: 2px solid rgb(249, 202, 218);
     outline-offset: 2px;
   }
 
@@ -170048,6 +170123,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .\32xl\:outline-pink{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .\32xl\:focus-within\:outline-none:focus-within{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -170063,6 +170143,11 @@ button[disabled]:hover{
     outline-offset: 2px;
   }
 
+  .\32xl\:focus-within\:outline-pink:focus-within{
+    outline: 2px solid rgb(249, 202, 218);
+    outline-offset: 2px;
+  }
+
   .\32xl\:focus\:outline-none:focus{
     outline: 2px solid transparent;
     outline-offset: 2px;
@@ -170075,6 +170160,11 @@ button[disabled]:hover{
 
   .\32xl\:focus\:outline-black:focus{
     outline: 2px dotted black;
+    outline-offset: 2px;
+  }
+
+  .\32xl\:focus\:outline-pink:focus{
+    outline: 2px solid rgb(249, 202, 218);
     outline-offset: 2px;
   }
 
