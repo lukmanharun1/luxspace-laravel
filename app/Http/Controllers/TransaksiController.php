@@ -38,7 +38,7 @@ class TransaksiController extends Controller
                     $shippingDetails[0], $dataShopping, $shippingDetails[0]->total_price
                 ));
                 // hapus cookie cart
-                setcookie('cart', '');
+                setcookie('cart', '', time() - 60 * 60 * 24 * 7, '/');
                 return view('success');
             } else {
                 return abort(404);

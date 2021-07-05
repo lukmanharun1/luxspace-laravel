@@ -128,7 +128,7 @@ class ShippingDetailsController extends Controller
         // cek session shipping
         if ($request->session()->get('cek-email')) {
             // hapus session 
-            // $request->session()->forget('shipping');
+            $request->session()->forget('cek-email');
             return view('cek-email');
         }
         return abort(404);
