@@ -20,7 +20,7 @@ class SuccessTransactionEmail extends Mailable
     private $shoppingCart;
     private $total;
 
-    public function __construct($shippingDetails = [], $shoppingCart = [], $total)
+    public function __construct($shippingDetails = [], $shoppingCart = [], $total = 0)
     {
         $this->shippingDetails = $shippingDetails;
         $this->shoppingCart = $shoppingCart; 

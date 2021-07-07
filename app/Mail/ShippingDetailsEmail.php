@@ -21,7 +21,7 @@ class ShippingDetailsEmail extends Mailable
     private $total;
     private $token;
 
-    public function __construct($shippingDetails = [], $shoppingCart = [], $total, $token)
+    public function __construct($shippingDetails = [], $shoppingCart = [], $total = 0, $token = '')
     {
         $this->shippingDetails = $shippingDetails;
         $this->shoppingCart = $shoppingCart;

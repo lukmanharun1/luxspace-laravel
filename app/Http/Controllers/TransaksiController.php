@@ -33,7 +33,10 @@ class TransaksiController extends Controller
 
                 $dataShopping = ShippingDetail::find($shippingDetails[0]->id)->shoppingCart;
                 // ubah token menjadi kosong 
-                ShippingDetail::where('token', '=', $token)->update(['token' => '']);
+                ShippingDetail::where('token', '=', $token)->update([
+                    'token' => '',
+                    'status' => 'success'
+                ]);
                 Mail::to($shippingDetails[0]->email_address)->send(new SuccessTransactionEmail(
                     $shippingDetails[0], $dataShopping, $shippingDetails[0]->total_price
                 ));
