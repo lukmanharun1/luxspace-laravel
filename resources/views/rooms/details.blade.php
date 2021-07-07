@@ -34,7 +34,7 @@
    {{-- price --}}
    <div class="border border-solid border-pink-400 p-2 my-1 rounded-sm">
     <p>
-      Price : <b>{{ $room->price }}</b>
+      Price : IDR <b>{{ number_format($room->price,0, ',', '.') }}</b>
     </p>
    </div>
 
@@ -46,53 +46,58 @@
     </div>
 
    {{-- about product --}}
-   <div class="border border-solid border-pink-400 p-2 my-1 rounded-sm overflow-scroll">
+   <div class="border border-solid border-pink-400 p-2 my-1 rounded-sm overflow-scroll h-52">
     <p>
       About product : <b class="block">{{ $room->about_product }}</b>
     </p>
    </div>
    <div class="border border-solid border-pink-400 p-2 my-1 rounded-sm">
-     <div class="grid grid-cols-2 ">
+     <div class="flex flex-wrap justify-center">
         {{-- image 1 --}}
-        <p>Image 1</p>
+        {{-- <p>Image 1</p> --}}
         <img 
           src="{{ asset('images/upload_images/' . $room->image1) }}" 
           alt="image 2"
-          width="150"
+          width="133"
           height="150"
+          
         />
         {{-- image 2 --}}
-        <p>Image 2</p>
+        {{-- <p>Image 2</p> --}}
         <img 
           src="{{ asset('images/upload_images/' . $room->image2) }}" 
           alt="image 2"
-          width="150"
+          width="133"
           height="150"
+          class="mx-2"
         />
         {{-- image 3 --}}
-        <p>Image 3</p>
+        {{-- <p>Image 3</p> --}}
         <img 
           src="{{ asset('images/upload_images/' . $room->image3) }}" 
           alt="image 3"
-          width="150"
+          width="133"
           height="150"
+          
         />
-        {{-- image 4 --}}
-        <p>Image 4</p>
+            {{-- image 4 --}}
+        {{-- <p>Image 4</p> --}}
         <img 
-          src="{{ asset('images/upload_images/' . $room->image4) }}" 
-          alt="not found"
-          width="150"
-          height="150"
-        />
-        {{-- image 5 --}}
-        <p>Image 5</p>
-        <img 
-          src="{{ asset('images/upload_images/' . $room->image5) }}" 
-          alt="not found"
-          width="150"
-          height="150"
-        />
+        src="{{ asset('images/upload_images/' . $room->image4) }}" 
+        alt="not found"
+        width="133"
+        height="150"
+        class="mt-2"
+      />
+      {{-- image 5 --}}
+      {{-- <p>Image 5</p> --}}
+      <img 
+        src="{{ asset('images/upload_images/' . $room->image5) }}" 
+        alt="not found"
+        width="133"
+        height="150"
+        class="ml-2 mt-2"
+      />
       </div>
     </div>
     {{-- action --}}
