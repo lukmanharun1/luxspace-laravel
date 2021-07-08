@@ -1,9 +1,8 @@
 @foreach($category as $room)
       <!-- START: item carousel -->
-      <div class="p-4 relative card">
+      <div class="p-4 relative card mt-12">
         <div
-          class="rounded-xl overflow-hidden card-shadow relative"
-          style="width: 287px; height: 386px">
+          class="rounded-xl overflow-hidden card-shadow relative sm:w-72 sm:h-96 w-48 h-80">
           
           <img
             src="{{ asset('images/upload_images/' . $room->image1) }}"

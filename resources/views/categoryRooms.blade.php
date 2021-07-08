@@ -10,11 +10,9 @@
  <div class="flex flex-wrap">
     @foreach($category as $room)
       <!-- START: item carousel -->
-      <div class="p-4 relative card">
+      <div class="p-4 relative card mt-12">
         <div
-          class="rounded-xl overflow-hidden card-shadow relative"
-          style="width: 287px; height: 386px">
-          
+          class="rounded-xl overflow-hidden card-shadow relative sm:w-72 sm:h-96 w-48 h-80">
           <img
             src="{{ asset('images/upload_images/' . $room->image1) }}"
             alt="just arrived"
@@ -48,7 +46,7 @@
     $uri = explode('/', $_SERVER['REQUEST_URI']); 
     $uriCategory = end($uri);
   @endphp
-  <div class="text-center mt-3" id="pagination">
+  <div class="text-center mt-20" id="pagination">
     <span class="relative z-0 inline-flex shadow-sm rounded-md">
       @for($i = 1; $i <= $jumlahHalaman; $i++)
         @if($i == $halamanAktif)
