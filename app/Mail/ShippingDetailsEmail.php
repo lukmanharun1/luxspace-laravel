@@ -16,7 +16,7 @@ class ShippingDetailsEmail extends Mailable
      *
      * @return void
      */
-    private $shippingDetails; 
+    private $shippingDetails;
     private $shoppingCart;
     private $total;
     private $token;
@@ -36,13 +36,13 @@ class ShippingDetailsEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('admin@luxspace.com')
-                    ->view('send-email.shippingDetails')
-                    ->with([
-                        'shipping_details' => $this->shippingDetails,
-                        'shopping_cart' => $this->shoppingCart,
-                        'total' => $this->total,
-                        'token' => $this->token
-                    ]);
+        return $this->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'))
+            ->view('send-email.shippingDetails')
+            ->with([
+                'shipping_details' => $this->shippingDetails,
+                'shopping_cart' => $this->shoppingCart,
+                'total' => $this->total,
+                'token' => $this->token
+            ]);
     }
 }

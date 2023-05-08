@@ -16,14 +16,14 @@ class SuccessTransactionEmail extends Mailable
      *
      * @return void
      */
-    private $shippingDetails; 
+    private $shippingDetails;
     private $shoppingCart;
     private $total;
 
     public function __construct($shippingDetails = [], $shoppingCart = [], $total = 0)
     {
         $this->shippingDetails = $shippingDetails;
-        $this->shoppingCart = $shoppingCart; 
+        $this->shoppingCart = $shoppingCart;
         $this->total = $total;
     }
 
@@ -34,12 +34,12 @@ class SuccessTransactionEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('admin@luxspace.com')
-                    ->view('send-email.successTransaction')
-                    ->with([
-                        'shipping_details' => $this->shippingDetails,
-                        'shopping_cart' => $this->shoppingCart,
-                        'total' => $this->total
-                    ]);
+        return $this->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'))
+            ->view('send-email.successTransaction')
+            ->with([
+                'shipping_details' => $this->shippingDetails,
+                'shopping_cart' => $this->shoppingCart,
+                'total' => $this->total
+            ]);
     }
 }
