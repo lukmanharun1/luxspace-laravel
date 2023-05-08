@@ -6,8 +6,7 @@
 @endpush
 @section('content')
     <div class="flex justify-center items-center flex-col">
-        <img src="{{ asset('images/design/logo.svg') }}"
-            alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece" class="mt-6" />
+        <img src="{{ asset('images/design/logo.svg') }}" alt="Luxspace ~ Saingan IKEA" class="mt-6" />
         <img src="{{ asset('images/content/404_illustration.png') }}" alt="404 illustration ~ Luxspace" class="mt-10" />
         <h3 class="text-2xl md:text-3xl mt-10" style="color: #1F2B4A;">Opps! What's This?</h3>
         <p class="md:text-xl text-lg mt-4 text-center">

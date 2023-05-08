@@ -9,8 +9,7 @@
         <div class="container mx-auto py-5">
             <div class="flex flex-strech items-center">
                 <div class="w-56 flex items-center">
-                    <img src="images/design/logo.svg"
-                        alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece" />
+                    <img src="images/design/logo.svg" alt="Luxspace ~ Saingan IKEA" />
                 </div>
                 <div class="w-full"></div>
                 <!-- START: menu hamburger wrapper -->

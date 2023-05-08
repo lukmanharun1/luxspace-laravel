@@ -2,8 +2,7 @@
 <section>
     <div class="border-t border-b border-gray-200 py-12 mt-16 px-4">
         <div class="flex justify-center mb-8">
-            <img src="{{ asset('images/design/logo.svg') }}"
-                alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece" />
+            <img src="{{ asset('images/design/logo.svg') }}" alt="Luxspace ~ Saingan IKEA" />
         </div>
         <aside class="container mx-auto">
             <div class="flex flex-wrap md:space-x-4 justify-center">

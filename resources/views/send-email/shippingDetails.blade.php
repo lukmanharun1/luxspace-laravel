@@ -72,8 +72,7 @@
 @section('content')
     {{-- START: header --}}
     <header style="text-align: center">
-        <img src="{{ asset('images/design/logo.svg') }}"
-            alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece" />
+        <img src="{{ asset('images/design/logo.png') }}" alt="Luxspace ~ Saingan IKEA" />
     </header>
     {{-- END: header --}}
 

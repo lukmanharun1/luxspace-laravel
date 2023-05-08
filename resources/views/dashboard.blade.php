@@ -10,8 +10,7 @@
             <div class="flex flex-strech items-center">
                 <div class="w-56 flex items-center">
                     <a href="/dashboard">
-                        <img src="{{ asset('images/design/logo.svg') }}"
-                            alt="Luxspace ~ Adalah sebuah website yang menjual barang-barang kece" />
+                        <img src="{{ asset('images/design/logo.svg') }}" alt="Luxspace ~ Saingan IKEA" />
                     </a>
                 </div>
             </div>
