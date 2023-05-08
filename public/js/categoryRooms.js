@@ -1,23 +1,27 @@
+// icon details
+
+// const iconDetails = document.querySelectorAll('.show-icon-details');
+const categoryRoom = document.getElementById('category-room');
+
+categoryRoom.addEventListener('mouseover', (e) => {
+    if (e.target.classList.contains('show-icon-details')) {
+        const element = e.target.nextElementSibling;
+        if (element.classList.contains('hidden')) {
+            element.classList.remove('hidden');
+            element.classList.add('flex');
+
+            element.addEventListener('mouseleave', () => {
+                element.classList.remove('flex');
+                element.classList.add('hidden');
+            });
+        }
+    }
+});
+
 // pagination
 const pagination = document.getElementById("pagination");
 // ambil item carousel
 const tempatPagination = pagination.previousElementSibling;
-// icon details (mata) hover
-tempatPagination.addEventListener("mouseover", function (e) {
-    // tambahkan class hidden (item carousel)
-    const hapusIconDetails = tempatPagination.querySelectorAll(
-        ".absolute.inset-0.rounded-3xl"
-    );
-    hapusIconDetails.forEach((hapusIconDetail) => {
-        if (!hapusIconDetail.classList.contains("hidden")) {
-            hapusIconDetail.classList.add("hidden");
-        }
-    });
-    const iconDetail = e.target.parentElement.querySelector(
-        ".absolute.inset-0.rounded-3xl"
-    );
-    iconDetail.classList.remove("hidden");
-});
 
 // ketika mouse keluar
 tempatPagination.addEventListener("mouseleave", function (e) {

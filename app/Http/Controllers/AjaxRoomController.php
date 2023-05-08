@@ -33,22 +33,22 @@ class AjaxRoomController extends Controller
         $rooms = Room::where('category', '=', $category)->get($this->coloms);
         return view('rooms.ajax.allData', ['rooms' => $rooms]);
     }
+
     public function showAllRoom($productPrice)
     {
         $rooms = Room::where('name_product', 'like', "%$productPrice%")
-                        ->orWhere('price', 'like', "%$productPrice%")
-                        ->get($this->coloms);
+            ->orWhere('price', 'like', "%$productPrice%")
+            ->get($this->coloms);
         return view('rooms.ajax.allData', ['rooms' => $rooms]);
     }
 
     public function showProductPrice($category, $productPrice)
     {
         $rooms = Room::where('category', '=', $category)
-                        ->where('name_product', 'like', "%$productPrice%")
-                        ->orWhere('price', 'like', "%$productPrice%")
-                        ->get($this->coloms);
-            
+            ->where('name_product', 'like', "%$productPrice%")
+            ->orWhere('price', 'like', "%$productPrice%")
+            ->get($this->coloms);
+
         return view('rooms.ajax.allData', ['rooms' => $rooms]);
     }
-    
 }

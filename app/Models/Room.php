@@ -13,4 +13,5 @@ class Room extends Model
                             'name_product', 'category', 'price', 'about_product',
                             'image1', 'image2', 'image3', 'image4', 'image5'
     ];
+    public $timestamps = true;
 }

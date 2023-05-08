@@ -19,9 +19,6 @@ use App\Http\Controllers\TransaksiController;
 
 // halaman utama
 Route::get('/', [IndexController::class, 'index']);
-Route::get('/email', function () {
-    return view('send-email.shippingDetails');
-});
 // category rooms 
 Route::get('/category-room/{room}', [IndexController::class, 'show'])->name('category-rooms');
 
@@ -53,6 +50,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard/ajax/all-data-rooms/{productPrice}', [AjaxRoomController::class, 'showAllRoom']);
     Route::get('/dashboard/ajax/{category}', [AjaxRoomController::class, 'show']);
     Route::get('/dashboard/ajax/{category}/{productPrice}', [AjaxRoomController::class, 'showProductPrice']);
-
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

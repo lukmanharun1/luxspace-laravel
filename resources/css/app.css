@@ -3,6 +3,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import './cart.css';
+
 @layer components {
     .overlay {
         @apply absolute;
@@ -19,8 +21,8 @@
         @apply opacity-100;
     }
     .overlay .video {
-        @apply absolute transform bg-blue-200 bg-no-repeat bg-center rounded-full 
-          flex items-center justify-center;
+        @apply absolute transform bg-no-repeat bg-center rounded-full 
+          flex items-center justify-center bg-pink-400;
         background-image: url("/images/design/icon-play.svg");
         top: 50%;
         left: 50%;
@@ -33,7 +35,7 @@
     .hero .hero-cta {
         @apply w-12 h-12;
         transform: translateX(-75px) translateY(-50%);
-        backgroud-size: 37.5%;
+        background-size: 37.5%;
     }
     /* card */
     .card .card-shadow {
@@ -64,7 +66,7 @@
         @apply flex my-4 flex-col;
     }
     .slider .thumbnail {
-        @apply w-screen order-last -mx-2 overflow-auto flex pl-4;
+        @apply w-screen order-last overflow-auto flex;
     }
     .slider .thumbnail .item {
         @apply rounded-lg bg-gray-100 relative cursor-pointer mb-4;
@@ -77,21 +79,16 @@
         @apply transition duration-200 absolute inset-0 bg-black bg-opacity-0 border-2 border-black border-opacity-0 rounded-lg;
     }
     .slider .thumbnail .item.selected::after {
-        @apply bg-opacity-35 border-opacity-100;
+        @apply bg-opacity-35;
     }
     .icon-details {
         width: 70px;
         height: 70px;
-        top: 42%;
-        left: 39%;
-        @apply bg-white rounded-full relative;
+        @apply bg-white rounded-full absolute flex items-center justify-center;
     }
-    .icon-details svg {
+    .icon-details img {
         width: 43px;
         height: 24px;
-        left: 18%;
-        top: 27%;
-        @apply absolute text-white;
     }
 }
 
@@ -102,14 +99,14 @@
     }
     .hero .hero-cta {
         @apply w-20 h-20 -translate-x-1/2 -translate-y-1/2;
-        backgroud-size: auto;
+        background-size: auto;
     }
     .slider {
         @apply flex-row;
     }
 
     .slider .thumbnail {
-        @apply w-auto order-first block overflow-visible pl-0;
+        @apply w-auto order-first block overflow-auto;
     }
 
     .slider .preview {

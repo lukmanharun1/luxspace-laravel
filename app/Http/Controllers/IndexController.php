@@ -37,8 +37,8 @@ class IndexController extends Controller
             }
         }
         $justArrived = Room::where('category', '=', 'all_room')
-                            ->limit(8)
-                            ->get(['id', 'name_product', 'price', 'image1']);
+            ->limit(8)
+            ->get(['id', 'name_product', 'price', 'image1']);
         return view('index', [
             'living_room' => $categories['all_room'] + $categories['living_room'],
             'children_room' => $categories['all_room'] + $categories['children_room'],
@@ -51,8 +51,8 @@ class IndexController extends Controller
     private function pagination($category)
     {
         return Room::select(['id', 'name_product', 'price', 'image1'])
-                        ->whereIn('category', ['all_room', $category])
-                        ->paginate(8);
+            ->whereIn('category', ['all_room', $category])
+            ->paginate(8);
     }
     public function show($category)
     {
@@ -60,7 +60,7 @@ class IndexController extends Controller
         return view('categoryRooms', ['category' => $rooms]);
     }
 
-    public function showPagination($category) 
+    public function showPagination($category)
     {
         $rooms = $this->pagination($category);
         return view('ajax-pagination.pagination', ['category' => $rooms]);
@@ -69,23 +69,34 @@ class IndexController extends Controller
     public function details(Room $room)
     {
         $allRoom = Room::where('category', '=', 'all_room')
-                        ->orderBy('name_product', 'asc')
-                        ->limit(4)
-                        ->get(['id', 'image1', 'name_product', 'price']);
+            ->orderBy('name_product', 'asc')
+            ->limit(4)
+            ->get(['id', 'image1', 'name_product', 'price']);
+
+        $images = [$room->image1, $room->image2, $room->image3];
+
+        if ($room->image4) {
+            array_push($images, $room->image4);
+        }
+        if ($room->image5) {
+            array_push($images, $room->image5);
+        }
         return view('details', [
             'details' => $room,
+            'images' => $images,
             'all_room' => $allRoom
         ]);
     }
 
-    public function addToCart($id) {
+    public function addToCart($id)
+    {
         $valueCart = Room::select('id')->findOrFail($id);
         $tujuhHari = time() + 60 * 60 * 24 * 7;
-        
+
         if (isset($_COOKIE['cart'])) {
             // kalau ada kerajang belanja maka tambahkan
             $cart = json_decode($_COOKIE['cart'], true);
-            array_push($cart, $valueCart->id);           
+            array_push($cart, $valueCart->id);
             setcookie('cart', json_encode($cart), $tujuhHari, '/');
             return redirect('/cart');
         } else {
@@ -104,13 +115,13 @@ class IndexController extends Controller
         $dataShopping = collect();
         if (isset($_COOKIE['cart'])) {
             $cookieCart = json_decode($_COOKIE['cart']);
-            
+
             // ambil semua data yang ada di cookie
             $shoppingCart = Room::whereIn('id', $cookieCart)
-                                    ->get(['id', 'image1', 'name_product', 'category', 'price']);
+                ->get(['id', 'image1', 'name_product', 'category', 'price']);
 
             // menampilkan keranjang belanja ada yang sama
-    
+
             foreach ($cookieCart as $valueCookie) {
                 foreach ($shoppingCart as $shopping) {
                     if ($valueCookie === $shopping->id) {

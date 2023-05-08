@@ -129,19 +129,21 @@ const links = document.querySelectorAll(".relative.px-4.card .stretched-link");
 links.forEach(function (link) {
     link.addEventListener("mouseover", function (e) {
         const iconDetail = e.target.parentElement.querySelector(
-            ".absolute.inset-0.rounded-3xl"
+            ".absolute.inset-0.rounded-xl"
         );
         if (iconDetail.classList.contains("hidden")) {
             iconDetail.classList.remove("hidden");
+            iconDetail.classList.add("flex");
         }
     });
 
     link.addEventListener("mouseleave", function (e) {
         const iconDetail = e.target.parentElement.querySelector(
-            ".absolute.inset-0.rounded-3xl"
+            ".absolute.inset-0.rounded-xl"
         );
         if (!iconDetail.classList.contains("hidden")) {
             iconDetail.classList.add("hidden");
+            iconDetail.classList.remove("flex");
         }
     });
 });
